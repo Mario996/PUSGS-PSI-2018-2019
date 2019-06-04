@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using WebApp.DTOs;
 using WebApp.Models;
 
 namespace WebApp.Models
@@ -21,7 +22,7 @@ namespace WebApp.Models
 
         }
 
-        public void Update(Line newValue)
+        public void Update(LineDTO newValue)
         {
             LineNumber = newValue.LineNumber;
         }

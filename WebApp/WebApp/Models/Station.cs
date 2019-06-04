@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using WebApp.DTOs;
 
 namespace WebApp.Models
 {
@@ -25,7 +26,7 @@ namespace WebApp.Models
 
         }
 
-        public void Update(Station newValue)
+        public void Update(StationDTO newValue)
         {
             Name = newValue.Name;
             Address = newValue.Address;
