@@ -15,6 +15,12 @@ namespace WebApp.Models
     public class ApplicationUser : IdentityUser
     {
         public List<Ticket> Tickets { get; set; } = new List<Ticket>();
+        public string Name { get; set; }
+        public string Lastname { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string Adddress { get; set; }
+        public string UserType { get; set; }
+        public string DocumentImageUrl { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

@@ -268,6 +268,10 @@
     <Compile Include="Migrations\201906041821271_ModelCreated.Designer.cs">
       <DependentUpon>201906041821271_ModelCreated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906051458583_DeparturesRequired.cs" />
+    <Compile Include="Migrations\201906051458583_DeparturesRequired.Designer.cs">
+      <DependentUpon>201906051458583_DeparturesRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -393,6 +397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906041821271_ModelCreated.resx">
       <DependentUpon>201906041821271_ModelCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906051458583_DeparturesRequired.resx">
+      <DependentUpon>201906051458583_DeparturesRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
