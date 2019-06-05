@@ -1,10 +1,10 @@
 import { Line } from './line.model';
 
 export class Station{
-    id: number;
-    name: string;
-    address: string;
-    lines: Line[];
+    public id: number;
+    public name: string;
+    public address: string;
+    public lines: Line[];
 
     constructor(id: number, name: string, addres: string, lines: Line[]){
         this.id = id;
