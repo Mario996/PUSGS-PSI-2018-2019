@@ -1,0 +1,18 @@
+.spejsing{
+    padding: 6px;
+    margin-right: 12px;
+}
+
+.centriraj{
+  text-align: center;
+}
+
+.linijaStajling {
+    color: #4CAF50;
+    font-size: 24px;
+}
+
+.dugme{
+  background-color: #afa54c;
+  color: white  
+}

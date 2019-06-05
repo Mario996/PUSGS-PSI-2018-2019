@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <label class="text-muted spejsing">
+        <input type="radio" name="tip">
+        Gradski
+      </label>
+      <label class="text-muted spejsing">
+        <input type="radio" name="tip">
+        Prigradski
+      </label>
+      <div class="dropdown spejsing" appDropdown>
+        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Weekday<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Monday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Tuesday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Wednesday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Thursday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Friday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Saturday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Sunday</a></li>
+        </ul>
+      </div>
+      <div class="dropdown spejsing" appDropdown>
+        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Lines<span class="caret"></span></a>
+        <div class="dropdown-content">
+          <p *ngFor="let line of lines; let i = index"></p>
+        </div>
+      </div>
+      <button type="button" class="btn spejsing dugme" (click)="change()">Success</button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <hr>
+  <div class="col-xs-12 centriraj linijaStajling">
+    <p>Linija {{broj}}:</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let departure of departures; let i = index">
+        {{ departure }}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="row">
+    <hr>
+    <div class="col-xs-12 centriraj linijaStajling">
+      <p>Control</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let user of users; let i = index">
+          
+          {{user}}(<button class="btn btn-success" >Validate</button>)
+        </li>
+      </ul>
+    </div>
+  
