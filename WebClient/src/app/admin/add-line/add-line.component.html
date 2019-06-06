@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="id">Id</label>
+        <input type="number" id="id" name="id" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="lineNumber">Line Number</label>
+        <input type="number" id="lineNumber" name="lineNumber" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="stations">Stations</label>
+          <hr>
+          <div class="visina" *ngFor="let line of lines; let i = index">
+            <input type="checkbox" id="stations_i" name="stations_i" ngModel > {{line}}
+          </div>
+        </div>
+        <div class="form-group">
+        <label for="timetables">Timetables</label>
+        <hr>
+        <div class="visina" *ngFor="let line of lines; let i = index">
+          <input type="checkbox" id="timetables_i" name="timetables_i" ngModel> {{line}}
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit">Sign up</button>
+    </form>
+  </div>
+</div>
