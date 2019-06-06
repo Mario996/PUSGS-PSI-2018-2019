@@ -12,7 +12,6 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { DropdownDirective } from './dropdown.directive';
-import { AdminComponent } from './admin/admin.component';
 import { ControlComponent } from './control/control.component';
 import { HttpClientModule }    from '@angular/common/http';
 
@@ -27,9 +26,8 @@ import { HttpClientModule }    from '@angular/common/http';
     SigninComponent,
     SignupComponent,
     DropdownDirective,
-    AdminComponent,
     ControlComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

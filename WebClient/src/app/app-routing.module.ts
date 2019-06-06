@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { AdminComponent } from './admin/admin.component';
 import { ControlComponent } from './control/control.component';
+import { AddLineComponent } from './admin/add-line/add-line.component';
 
 const appRoutes: Routes = [
     { path: '', component: TimeTableComponent},
@@ -16,7 +17,7 @@ const appRoutes: Routes = [
     { path: 'line-network', component: LineNetworkComponent},
     { path: 'vehicle-location', component: VehicleLocationComponent},
     { path: 'price-list', component: PriceListComponent},
-    { path: 'admin', component: AdminComponent},
+    { path: 'admin', loadChildren: "./admin/admin.module#AdminModule"},
     { path: 'control', component: ControlComponent},
     { path: 'signup', component: SignupComponent},
     { path: 'signin', component: SigninComponent}
