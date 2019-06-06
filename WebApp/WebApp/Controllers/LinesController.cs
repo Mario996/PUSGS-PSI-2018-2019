@@ -23,16 +23,16 @@ namespace WebApp.Controllers
         // GET api/lines
         public IEnumerable<Line> GetAllLines()
         {
-            return unitOfWork.Lines.GetAll();
+            return unitOfWork.Lines.GetAll().Where(x => x.Deleted == false);
         }
 
         [HttpGet]
         // GET api/lines/5
         public HttpResponseMessage GetLineById(int id)
         {
-            var result = unitOfWork.Lines.Get(id);
+            var result = unitOfWork.Lines.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
-            if(result == null)
+            if (result == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Line with that id number doesn't exist.");
             }
@@ -64,7 +64,7 @@ namespace WebApp.Controllers
         // PUT api/lines/5
         public HttpResponseMessage UpdateLine(int id, [FromBody]LineDTO lineDTO)
         {
-            var lineToBeUpdated = unitOfWork.Lines.Get(id);
+            var lineToBeUpdated = unitOfWork.Lines.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
             if (lineToBeUpdated != null)
             {
@@ -83,7 +83,7 @@ namespace WebApp.Controllers
         // DELETE api/lines/5
         public HttpResponseMessage DeleteLine(int id)
         {
-            var lineToBeDeleted = unitOfWork.Lines.Get(id);
+            var lineToBeDeleted = unitOfWork.Lines.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
             if (lineToBeDeleted != null)
             {
