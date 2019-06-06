@@ -48,6 +48,26 @@ namespace WebApp.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        public DateTime? DateOfBirth { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Lastname { get; set; }
+
+        [Required]
+        public string UserType { get; set; }
+
+        public string DocumentUrl { get; set; }
     }
 
     public class RegisterExternalBindingModel

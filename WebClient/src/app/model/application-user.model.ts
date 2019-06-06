@@ -3,6 +3,7 @@ export class ApplicationUser{
     public username: string;
     public mail: string;
     public password: string;
+    public confirmPassword: string;
     public name: string;
     public lastName: string;
     public dateOfBirth: Date;

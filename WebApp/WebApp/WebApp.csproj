@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201906051458583_DeparturesRequired.Designer.cs">
       <DependentUpon>201906051458583_DeparturesRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906061659017_DateOfBirthNullable.cs" />
+    <Compile Include="Migrations\201906061659017_DateOfBirthNullable.Designer.cs">
+      <DependentUpon>201906061659017_DateOfBirthNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -344,7 +348,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -400,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906051458583_DeparturesRequired.resx">
       <DependentUpon>201906051458583_DeparturesRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061659017_DateOfBirthNullable.resx">
+      <DependentUpon>201906061659017_DateOfBirthNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
