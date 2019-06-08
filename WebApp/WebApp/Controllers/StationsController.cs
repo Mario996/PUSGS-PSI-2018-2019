@@ -16,21 +16,21 @@ namespace WebApp.Controllers
 
         public StationsController(IUnitOfWork iUnitOfWork)
         {
-            this.unitOfWork = iUnitOfWork;
+            unitOfWork = iUnitOfWork;
         }
 
         [HttpGet]
         // GET api/stations
         public IEnumerable<Station> GetAllStations()
         {
-            return unitOfWork.Stations.GetAll();
+            return unitOfWork.Stations.GetAll().Where(x => x.Deleted == false);
         }
 
         [HttpGet]
         // GET api/stations/5
         public HttpResponseMessage GetStationById(int id)
         {
-            var result = unitOfWork.Stations.Get(id);
+            var result = unitOfWork.Stations.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
             if (result == null)
             {
@@ -67,7 +67,7 @@ namespace WebApp.Controllers
         // PUT api/stations/5
         public HttpResponseMessage UpdateStation(int id, [FromBody]StationDTO stationDTO)
         {
-            var stationToBeUpdated = unitOfWork.Stations.Get(id);
+            var stationToBeUpdated = unitOfWork.Stations.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
             if (stationToBeUpdated != null)
             {
@@ -86,7 +86,7 @@ namespace WebApp.Controllers
         // DELETE api/stations/5
         public HttpResponseMessage DeleteStation(int id)
         {
-            var stationToBeDeleted = unitOfWork.Stations.Get(id);
+            var stationToBeDeleted = unitOfWork.Stations.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
             if (stationToBeDeleted != null)
             {

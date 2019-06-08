@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -8,9 +9,15 @@ import { NgForm } from '@angular/forms';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onSignin(user)
+  {
+    this.loginService.logIn(user);
+    this.router.navigate(['/time-table']);
   }
 
 }

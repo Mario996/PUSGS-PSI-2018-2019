@@ -16,21 +16,21 @@ namespace WebApp.Controllers
 
         public TimetablesController(IUnitOfWork iUnitOfWork)
         {
-            this.unitOfWork = iUnitOfWork;
+            unitOfWork = iUnitOfWork;
         }
 
         [HttpGet]
         // GET api/timetables
         public IEnumerable<Timetable> GetAllTimetables()
         {
-            return unitOfWork.Timetables.GetAll();
+            return unitOfWork.Timetables.GetAll().Where(x => x.Deleted == false);
         }
 
         [HttpGet]
         // GET api/timetables/5
         public HttpResponseMessage GetTimetableById(int id)
         {
-            var result = unitOfWork.Timetables.Get(id);
+            var result = unitOfWork.Timetables.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
             if (result == null)
             {
@@ -66,7 +66,7 @@ namespace WebApp.Controllers
         // PUT api/timetables/5
         public HttpResponseMessage UpdateTimetable(int id, [FromBody]TimetableDTO timetableDTO)
         {
-            var timetableToBeUpdated = unitOfWork.Timetables.Get(id);
+            var timetableToBeUpdated = unitOfWork.Timetables.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
             if (timetableToBeUpdated != null)
             {
@@ -85,7 +85,7 @@ namespace WebApp.Controllers
         // DELETE api/Timetables/5
         public HttpResponseMessage DeleteTimetable(int id)
         {
-            var timetableToBeDeleted = unitOfWork.Timetables.Get(id);
+            var timetableToBeDeleted = unitOfWork.Timetables.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
             if (timetableToBeDeleted != null)
             {

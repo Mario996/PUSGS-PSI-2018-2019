@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -14,6 +16,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebApp.Models;
+using WebApp.Persistence;
 using WebApp.Providers;
 using WebApp.Results;
 
@@ -25,6 +28,12 @@ namespace WebApp.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
+
+        public AccountController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         public AccountController()
         {
@@ -328,13 +337,34 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser()
+            {
+                Id = model.Username,
+                UserName = model.Username,
+                Email = model.Email,
+                PasswordHash = ApplicationUser.HashPassword(model.Password),
+                DateOfBirth = model.DateOfBirth,
+                Address = model.Address,
+                Name = model.Name,
+                Lastname = model.Lastname,
+                UserType = model.UserType,
+                DocumentImageUrl = model.DocumentUrl
+            };          
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
+            }
+            else
+            {
+                var userStore = new UserStore<ApplicationUser>(_context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+
+                userManager.AddToRole(user.Id, "AppUser");
+ 
+                _context.SaveChanges();
             }
 
             return Ok();

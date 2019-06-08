@@ -23,16 +23,14 @@ namespace WebApp.Controllers
         // GET api/lines
         public IEnumerable<Line> GetAllLines()
         {
-            var query = unitOfWork.Lines.GetAll()
-                .Where(l => l.Deleted == false);
-            return query;
+            return unitOfWork.Lines.GetAll().Where(x => x.Deleted == false);
         }
 
         [HttpGet]
         // GET api/lines/5
         public HttpResponseMessage GetLineById(int id)
         {
-            var result = unitOfWork.Lines.Get(id);
+            var result = unitOfWork.Lines.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
             if (result == null)
             {
@@ -113,7 +111,7 @@ namespace WebApp.Controllers
         // DELETE api/lines/5
         public HttpResponseMessage DeleteLine(int id)
         {
-            var lineToBeDeleted = unitOfWork.Lines.Get(id);
+            var lineToBeDeleted = unitOfWork.Lines.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
 
             if (lineToBeDeleted != null)
             {

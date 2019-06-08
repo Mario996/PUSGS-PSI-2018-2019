@@ -268,13 +268,13 @@
     <Compile Include="Migrations\201906041821271_ModelCreated.Designer.cs">
       <DependentUpon>201906041821271_ModelCreated.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906051731179_DeparturesRequired.cs" />
-    <Compile Include="Migrations\201906051731179_DeparturesRequired.Designer.cs">
-      <DependentUpon>201906051731179_DeparturesRequired.cs</DependentUpon>
+    <Compile Include="Migrations\201906051458583_DeparturesRequired.cs" />
+    <Compile Include="Migrations\201906051458583_DeparturesRequired.Designer.cs">
+      <DependentUpon>201906051458583_DeparturesRequired.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906051734057_ApplicationUserUpdated.cs" />
-    <Compile Include="Migrations\201906051734057_ApplicationUserUpdated.Designer.cs">
-      <DependentUpon>201906051734057_ApplicationUserUpdated.cs</DependentUpon>
+    <Compile Include="Migrations\201906061659017_DateOfBirthNullable.cs" />
+    <Compile Include="Migrations\201906061659017_DateOfBirthNullable.Designer.cs">
+      <DependentUpon>201906061659017_DateOfBirthNullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201906061424269_dateOfBirthNullable.cs" />
     <Compile Include="Migrations\201906061424269_dateOfBirthNullable.Designer.cs">
@@ -352,7 +352,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -406,11 +408,11 @@
     <EmbeddedResource Include="Migrations\201906041821271_ModelCreated.resx">
       <DependentUpon>201906041821271_ModelCreated.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906051731179_DeparturesRequired.resx">
-      <DependentUpon>201906051731179_DeparturesRequired.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906051458583_DeparturesRequired.resx">
+      <DependentUpon>201906051458583_DeparturesRequired.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906051734057_ApplicationUserUpdated.resx">
-      <DependentUpon>201906051734057_ApplicationUserUpdated.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906061659017_DateOfBirthNullable.resx">
+      <DependentUpon>201906061659017_DateOfBirthNullable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906061424269_dateOfBirthNullable.resx">
       <DependentUpon>201906061424269_dateOfBirthNullable.cs</DependentUpon>
