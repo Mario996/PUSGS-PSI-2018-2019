@@ -7,7 +7,6 @@ import { TimetableService } from './time-table.service';
   styleUrls: ['./time-table.component.css']
 })
 
-@Injectable()
 export class TimeTableComponent implements OnInit {
   broj = 7;
   departures = 

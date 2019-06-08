@@ -276,6 +276,10 @@
     <Compile Include="Migrations\201906051734057_ApplicationUserUpdated.Designer.cs">
       <DependentUpon>201906051734057_ApplicationUserUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906061424269_dateOfBirthNullable.cs" />
+    <Compile Include="Migrations\201906061424269_dateOfBirthNullable.Designer.cs">
+      <DependentUpon>201906061424269_dateOfBirthNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -407,6 +411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906051734057_ApplicationUserUpdated.resx">
       <DependentUpon>201906051734057_ApplicationUserUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061424269_dateOfBirthNullable.resx">
+      <DependentUpon>201906061424269_dateOfBirthNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

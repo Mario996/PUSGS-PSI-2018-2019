@@ -14,6 +14,9 @@ import { FormsModule } from '@angular/forms';
 import { DropdownDirective } from './dropdown.directive';
 import { ControlComponent } from './control/control.component';
 import { HttpClientModule }    from '@angular/common/http';
+import { LineService } from './line.service';
+import { StationService } from './station.service';
+import { TimetableService } from './time-table/time-table.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,11 @@ import { HttpClientModule }    from '@angular/common/http';
   exports: [
     TimeTableComponent,
     DropdownDirective
+  ],
+  providers: [
+    LineService,
+    TimetableService,
+    StationService
   ],
   bootstrap: [AppComponent]
 })

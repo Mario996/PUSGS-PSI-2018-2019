@@ -3,13 +3,17 @@ import { Line } from './line.model';
 enum CityOrIntercity {City = 1, Intercity}
 
 export class Timetable{
-    public id: number;
-    public cityOrIntercity: CityOrIntercity;
-    public line: Line;
-    public lineId: number;
-    public departures: string;
+    public Id: number;
+    public CityOrIntercity: CityOrIntercity;
+    public Line: Line;
+    public LineId: number;
+    public Departures: string;
 
     constructor(id: number, cityOrIntercity: CityOrIntercity, line: Line, lineId: number, departures: string){
-
+        this.Id = id;
+        this.CityOrIntercity = cityOrIntercity;
+        this.Line = line;
+        this.LineId = lineId;
+        this.Departures = departures;
     }
 }

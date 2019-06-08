@@ -7,6 +7,7 @@ import { AddLineComponent } from './add-line/add-line.component';
 import { AdminComponent } from './admin.component';
 import { AdminStartComponent } from './admin-start/admin-start.component';
 import { DeleteLineComponent } from './delete-line/delete-line.component';
+import { EditLineComponent } from './edit-line/edit-line.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { DeleteLineComponent } from './delete-line/delete-line.component';
         AddLineComponent,
         AdminComponent,
         AdminStartComponent,
-        DeleteLineComponent
+        DeleteLineComponent,
+        EditLineComponent
     ],
     imports: [
         CommonModule,

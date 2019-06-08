@@ -3,7 +3,7 @@
     <label class="linijaStajling">Lines:</label>
     <hr>
     <ul class="list-group">
-      <li class="list-group-item linijaStajling" *ngFor="let line of lines; let i = index"> {{line}}
+      <li class="list-group-item linijaStajling" *ngFor="let line of lines; let i = index"> {{line.Id}}
         <button type="button" class="btn btn-danger spejsing" (click)="delete(i)">Delete</button>
       </li>
     </ul>

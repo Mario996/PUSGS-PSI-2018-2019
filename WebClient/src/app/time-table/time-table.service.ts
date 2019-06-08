@@ -14,4 +14,9 @@ export class TimetableService {
         }
         return this.http.post("http://localhost:52295/api/Line/PostProduct", req);
     }
+
+    getTimetables() {
+        return this.http.get("http://localhost:52295/api/timetables");
+    }
+
 }

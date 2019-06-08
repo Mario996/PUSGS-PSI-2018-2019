@@ -14,8 +14,11 @@ export class AdminStartComponent implements OnInit {
   ngOnInit() {
   }
   
-  lineAddOrUpdate(){
+  lineAdd(){
     this.router.navigate(['addLine'], {relativeTo: this.route})
+  }
+  lineEdit(){
+    this.router.navigate(['editLine'], {relativeTo: this.route})
   }
   lineDelete(){
     this.router.navigate(['deleteLine'], {relativeTo:this.route})

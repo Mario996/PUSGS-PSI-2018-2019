@@ -23,7 +23,9 @@ namespace WebApp.Controllers
         // GET api/lines
         public IEnumerable<Line> GetAllLines()
         {
-            return unitOfWork.Lines.GetAll();
+            var query = unitOfWork.Lines.GetAll()
+                .Where(l => l.Deleted == false);
+            return query;
         }
 
         [HttpGet]
@@ -32,7 +34,7 @@ namespace WebApp.Controllers
         {
             var result = unitOfWork.Lines.Get(id);
 
-            if(result == null)
+            if (result == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Line with that id number doesn't exist.");
             }
@@ -47,11 +49,27 @@ namespace WebApp.Controllers
         public HttpResponseMessage CreateLine([FromBody]LineDTO lineDTO)
         {
             Line newLine = new Line();
+            try { 
             newLine.LineNumber = lineDTO.LineNumber;
+            foreach (var x in unitOfWork.Stations.GetAll())
+            {
+                foreach (var y in lineDTO.Stations)
+                {
+                    if (x.Id == y.Id)
+                    {
+                        newLine.Stations.Add(x);
+                    }
+                }
+            }
+            newLine.Timetables = lineDTO.Timetables;
 
             unitOfWork.Lines.Add(newLine);
             unitOfWork.Complete();
-
+            }
+            catch(Exception e)
+            {
+                var x = e;
+            }
             var message = Request.CreateResponse(HttpStatusCode.Created, newLine);
 
             message.Headers.Location = new Uri(Request.RequestUri + "/" + newLine.Id.ToString());
@@ -65,16 +83,28 @@ namespace WebApp.Controllers
         public HttpResponseMessage UpdateLine(int id, [FromBody]LineDTO lineDTO)
         {
             var lineToBeUpdated = unitOfWork.Lines.Get(id);
-
+            List<Station> l = new List<Station>();
+            foreach (var x in unitOfWork.Stations.GetAll())
+            {
+                foreach (var y in lineDTO.Stations)
+                {
+                    if (x.Id == y.Id)
+                    {
+                        l.Add(x);
+                    }
+                }
+            }
+            lineToBeUpdated.Stations.Clear();
+            lineToBeUpdated.Stations = l;
             if (lineToBeUpdated != null)
             {
-                lineToBeUpdated.Update(lineDTO);
+                unitOfWork.Lines.Update(lineToBeUpdated);
                 unitOfWork.Complete();
-  
+
                 return Request.CreateResponse(HttpStatusCode.OK, lineToBeUpdated);
             }
             else
-            { 
+            {
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Line with that id number doesn't exist.");
             }
         }
