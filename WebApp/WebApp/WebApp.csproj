@@ -272,13 +272,9 @@
     <Compile Include="Migrations\201906051458583_DeparturesRequired.Designer.cs">
       <DependentUpon>201906051458583_DeparturesRequired.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906061659017_DateOfBirthNullable.cs" />
-    <Compile Include="Migrations\201906061659017_DateOfBirthNullable.Designer.cs">
-      <DependentUpon>201906061659017_DateOfBirthNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906061424269_dateOfBirthNullable.cs" />
-    <Compile Include="Migrations\201906061424269_dateOfBirthNullable.Designer.cs">
-      <DependentUpon>201906061424269_dateOfBirthNullable.cs</DependentUpon>
+    <Compile Include="Migrations\201906081649458_DateOfBirthNullable.cs" />
+    <Compile Include="Migrations\201906081649458_DateOfBirthNullable.Designer.cs">
+      <DependentUpon>201906081649458_DateOfBirthNullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -411,11 +407,8 @@
     <EmbeddedResource Include="Migrations\201906051458583_DeparturesRequired.resx">
       <DependentUpon>201906051458583_DeparturesRequired.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906061659017_DateOfBirthNullable.resx">
-      <DependentUpon>201906061659017_DateOfBirthNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906061424269_dateOfBirthNullable.resx">
-      <DependentUpon>201906061424269_dateOfBirthNullable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906081649458_DateOfBirthNullable.resx">
+      <DependentUpon>201906081649458_DateOfBirthNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

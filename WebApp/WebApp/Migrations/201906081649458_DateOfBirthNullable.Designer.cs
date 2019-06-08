@@ -7,13 +7,13 @@ namespace WebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class dateOfBirthNullable : IMigrationMetadata
+    public sealed partial class DateOfBirthNullable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(dateOfBirthNullable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DateOfBirthNullable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201906061424269_dateOfBirthNullable"; }
+            get { return "201906081649458_DateOfBirthNullable"; }
         }
         
         string IMigrationMetadata.Source

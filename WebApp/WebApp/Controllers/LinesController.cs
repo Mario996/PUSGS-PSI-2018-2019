@@ -47,7 +47,7 @@ namespace WebApp.Controllers
         public HttpResponseMessage CreateLine([FromBody]LineDTO lineDTO)
         {
             Line newLine = new Line();
-            try { 
+
             newLine.LineNumber = lineDTO.LineNumber;
             foreach (var x in unitOfWork.Stations.GetAll())
             {
@@ -63,11 +63,7 @@ namespace WebApp.Controllers
 
             unitOfWork.Lines.Add(newLine);
             unitOfWork.Complete();
-            }
-            catch(Exception e)
-            {
-                var x = e;
-            }
+
             var message = Request.CreateResponse(HttpStatusCode.Created, newLine);
 
             message.Headers.Location = new Uri(Request.RequestUri + "/" + newLine.Id.ToString());
@@ -80,20 +76,22 @@ namespace WebApp.Controllers
         // PUT api/lines/5
         public HttpResponseMessage UpdateLine(int id, [FromBody]LineDTO lineDTO)
         {
-            var lineToBeUpdated = unitOfWork.Lines.Get(id);
-            List<Station> l = new List<Station>();
+            var lineToBeUpdated = unitOfWork.Lines.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
+            List<Station> listOfStations = new List<Station>();
             foreach (var x in unitOfWork.Stations.GetAll())
             {
                 foreach (var y in lineDTO.Stations)
                 {
                     if (x.Id == y.Id)
                     {
-                        l.Add(x);
+                        listOfStations.Add(x);
                     }
                 }
             }
             lineToBeUpdated.Stations.Clear();
-            lineToBeUpdated.Stations = l;
+            lineToBeUpdated.Stations = listOfStations;
+            lineToBeUpdated.LineNumber = lineDTO.LineNumber;
+
             if (lineToBeUpdated != null)
             {
                 unitOfWork.Lines.Update(lineToBeUpdated);
