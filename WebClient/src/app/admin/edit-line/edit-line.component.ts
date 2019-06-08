@@ -3,8 +3,8 @@ import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Timetable } from 'src/app/model/timetable.model';
 import { TimetableService } from 'src/app/time-table/time-table.service';
 import { Station } from 'src/app/model/station.model';
-import { StationService } from 'src/app/station.service';
-import { LineService } from 'src/app/line.service';
+import { StationService } from 'src/app/services/station.service';
+import { LineService } from 'src/app/services/line.service';
 import { Line } from 'src/app/model/line.model';
 
 

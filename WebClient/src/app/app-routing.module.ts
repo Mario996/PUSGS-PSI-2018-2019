@@ -10,6 +10,7 @@ import { SigninComponent } from './signin/signin.component';
 import { AdminComponent } from './admin/admin.component';
 import { ControlComponent } from './control/control.component';
 import { AddLineComponent } from './admin/add-line/add-line.component';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
     { path: '', component: TimeTableComponent},
@@ -17,8 +18,8 @@ const appRoutes: Routes = [
     { path: 'line-network', component: LineNetworkComponent},
     { path: 'vehicle-location', component: VehicleLocationComponent},
     { path: 'price-list', component: PriceListComponent},
-    { path: 'admin', loadChildren: "./admin/admin.module#AdminModule"},
-    { path: 'control', component: ControlComponent},
+    { path: 'admin', loadChildren: "./admin/admin.module#AdminModule", canActivate: [AuthGuard]},
+    { path: 'control', component: ControlComponent, canActivate: [AuthGuard]},
     { path: 'signup', component: SignupComponent},
     { path: 'signin', component: SigninComponent}
 ];

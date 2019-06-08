@@ -14,9 +14,12 @@ import { FormsModule } from '@angular/forms';
 import { DropdownDirective } from './dropdown.directive';
 import { ControlComponent } from './control/control.component';
 import { HttpClientModule }    from '@angular/common/http';
-import { LineService } from './line.service';
-import { StationService } from './station.service';
+import { LineService } from '../app/services/line.service';
+import { StationService } from '../app/services/station.service';
 import { TimetableService } from './time-table/time-table.service';
+import { LoginService } from './services/login.service';
+import { RegisterService } from './services/register.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { TimetableService } from './time-table/time-table.service';
   providers: [
     LineService,
     TimetableService,
-    StationService
+    StationService,
+    LoginService,
+    RegisterService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
