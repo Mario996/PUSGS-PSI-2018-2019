@@ -17,6 +17,9 @@ import { HttpClientModule }    from '@angular/common/http';
 import { LineService } from './services/line.service';
 import { StationService } from './services/station.service';
 import { TimetableService } from './time-table/time-table.service';
+import { LoginService } from './services/login.service';
+import { RegisterService } from './services/register.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { TimetableService } from './time-table/time-table.service';
   providers: [
     LineService,
     TimetableService,
-    StationService
+    StationService,
+    LoginService,
+    RegisterService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
