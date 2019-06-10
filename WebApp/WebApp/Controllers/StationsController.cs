@@ -51,6 +51,16 @@ namespace WebApp.Controllers
             newStation.Name = stationDTO.Name;
             newStation.Latitude = stationDTO.Latitude;
             newStation.Longitude = stationDTO.Longitude;
+            foreach (var x in unitOfWork.Lines.GetAll())
+            {
+                foreach (var y in stationDTO.Lines)
+                {
+                    if (x.Id == y.Id)
+                    {
+                        newStation.Lines.Add(x);
+                    }
+                }
+            }
 
             unitOfWork.Stations.Add(newStation);
             unitOfWork.Complete();
@@ -68,10 +78,26 @@ namespace WebApp.Controllers
         public HttpResponseMessage UpdateStation(int id, [FromBody]StationDTO stationDTO)
         {
             var stationToBeUpdated = unitOfWork.Stations.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
-
+            stationToBeUpdated.Name = stationDTO.Name;
+            stationToBeUpdated.Address = stationDTO.Address;
+            stationToBeUpdated.Longitude = stationDTO.Longitude;
+            stationToBeUpdated.Latitude = stationDTO.Latitude;
+            List<Line> listOfLines = new List<Line>();
+            foreach (var x in unitOfWork.Lines.GetAll())
+            {
+                foreach (var y in stationDTO.Lines)
+                {
+                    if (x.Id == y.Id)
+                    {
+                        listOfLines.Add(x);
+                    }
+                }
+            }
+            stationToBeUpdated.Lines.Clear();
+            stationToBeUpdated.Lines = listOfLines;
             if (stationToBeUpdated != null)
             {
-                stationToBeUpdated.Update(stationDTO);
+                unitOfWork.Stations.Update(stationToBeUpdated);
                 unitOfWork.Complete();
 
                 return Request.CreateResponse(HttpStatusCode.OK, stationToBeUpdated);

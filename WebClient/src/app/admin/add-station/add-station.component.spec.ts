@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddLineComponent } from './add-line.component';
 
+import { AddStationComponent } from './add-station.component';
 
-describe('AddLineComponent', () => {
-  let component: AddLineComponent;
-  let fixture: ComponentFixture<AddLineComponent>;
+describe('AddStationComponent', () => {
+  let component: AddStationComponent;
+  let fixture: ComponentFixture<AddStationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddLineComponent ]
+      declarations: [ AddStationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddLineComponent);
+    fixture = TestBed.createComponent(AddStationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

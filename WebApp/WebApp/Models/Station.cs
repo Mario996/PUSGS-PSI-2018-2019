@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace WebApp.Models
         public double Longitude { get; set; }
         [Required]
         public double Latitude { get; set; }
-        public List<Line> Lines { get; set; } = new List<Line>();
+        [JsonIgnore]
+        public virtual List<Line> Lines { get; set; } = new List<Line>();
         public bool Deleted { get; set; } = false;
 
         public Station()

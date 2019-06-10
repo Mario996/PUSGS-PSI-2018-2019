@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddLineComponent } from './add-line.component';
 
+import { DeleteStationComponent } from './delete-station.component';
 
-describe('AddLineComponent', () => {
-  let component: AddLineComponent;
-  let fixture: ComponentFixture<AddLineComponent>;
+describe('DeleteStationComponent', () => {
+  let component: DeleteStationComponent;
+  let fixture: ComponentFixture<DeleteStationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddLineComponent ]
+      declarations: [ DeleteStationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddLineComponent);
+    fixture = TestBed.createComponent(DeleteStationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

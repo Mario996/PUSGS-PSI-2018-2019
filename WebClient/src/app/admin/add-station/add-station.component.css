@@ -1,0 +1,23 @@
+.visina{
+    max-height: 50px;
+    align-self: auto;
+    display: inline;
+}
+.spejsing{
+    padding: 0px;
+    margin: 3px;
+}
+
+.centriraj{
+  text-align: center;
+}
+
+.linijaStajling {
+    color: #4CAF50;
+    font-size: 24px;
+}
+
+.dugme{
+  background-color: #afa54c;
+  color: white  
+}

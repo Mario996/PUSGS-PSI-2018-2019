@@ -1,6 +1,6 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { LineService } from 'src/app/line.service';
+import { LineService } from 'src/app/services/line.service';
 
 import { Line } from 'src/app/model/line.model';
 

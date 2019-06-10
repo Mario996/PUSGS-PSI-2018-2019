@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddLineComponent } from './add-line.component';
 
+import { DeleteTimetableComponent } from './delete-timetable.component';
 
-describe('AddLineComponent', () => {
-  let component: AddLineComponent;
-  let fixture: ComponentFixture<AddLineComponent>;
+describe('DeleteTimetableComponent', () => {
+  let component: DeleteTimetableComponent;
+  let fixture: ComponentFixture<DeleteTimetableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddLineComponent ]
+      declarations: [ DeleteTimetableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddLineComponent);
+    fixture = TestBed.createComponent(DeleteTimetableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

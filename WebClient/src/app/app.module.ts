@@ -14,8 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { DropdownDirective } from './dropdown.directive';
 import { ControlComponent } from './control/control.component';
 import { HttpClientModule }    from '@angular/common/http';
-import { LineService } from './line.service';
-import { StationService } from './station.service';
+import { LineService } from './services/line.service';
+import { StationService } from './services/station.service';
 import { TimetableService } from './time-table/time-table.service';
 
 @NgModule({

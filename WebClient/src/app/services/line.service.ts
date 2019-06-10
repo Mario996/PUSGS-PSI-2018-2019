@@ -1,4 +1,4 @@
-import { Line } from './model/line.model';
+import { Line } from '../model/line.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

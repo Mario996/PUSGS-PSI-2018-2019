@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form [formGroup]="stationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="id">Id</label>
+        <input type="number" id="id" formControlName="id" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="address" id="address" formControlName="address" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude</label>
+        <input type="number" id="longitude" formControlName="longitude" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input type="number" id="latitude" formControlName="latitude" class="form-control">
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-xs-12">
+            <label for="lines">Lines</label>
+            <div class="visina spejsing" *ngFor="let line of checkboxLines; let i = index"
+              formArrayName="lines">
+              <input type="checkbox" id="i" [formControlName]="i"> {{checkboxLines[i].Id}}
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit">Update Station</button>
+    </form>
+  </div>
+</div>

@@ -7,9 +7,7 @@ import { VehicleLocationComponent } from './vehicle-location/vehicle-location.co
 import { PriceListComponent } from './price-list/price-list.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
-import { AdminComponent } from './admin/admin.component';
 import { ControlComponent } from './control/control.component';
-import { AddLineComponent } from './admin/add-line/add-line.component';
 
 const appRoutes: Routes = [
     { path: '', component: TimeTableComponent},

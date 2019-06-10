@@ -23,4 +23,22 @@ export class AdminStartComponent implements OnInit {
   lineDelete(){
     this.router.navigate(['deleteLine'], {relativeTo:this.route})
   }
+  stationAdd(){
+    this.router.navigate(['addStation'], {relativeTo: this.route})
+  }
+  stationEdit(){
+    this.router.navigate(['editStation'], {relativeTo: this.route})
+  }
+  stationDelete(){
+    this.router.navigate(['deleteStation'], {relativeTo:this.route})
+  }
+  timetableAdd(){
+    this.router.navigate(['addTimetable'], {relativeTo: this.route})
+  }
+  timetableEdit(){
+    this.router.navigate(['editTimetable'], {relativeTo: this.route})
+  }
+  timetableDelete(){
+    this.router.navigate(['deleteTimetable'], {relativeTo:this.route})
+  }
 }
