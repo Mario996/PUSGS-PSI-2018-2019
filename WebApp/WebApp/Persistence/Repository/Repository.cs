@@ -30,6 +30,11 @@ namespace WebApp.Persistence.Repository
             return context.Set<TEntity>().Where(predicate);
         }
 
+        public IEnumerable<TEntity> Include(string path)
+        {
+            return context.Set<TEntity>().Include(path);
+        }
+
         public TEntity Get(TPKey id)
         {
             return context.Set<TEntity>().Find(id);
@@ -55,5 +60,7 @@ namespace WebApp.Persistence.Repository
             context.Set<TEntity>().Attach(entity);
             context.Entry(entity).State = EntityState.Modified;
         }
+
+
     }
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import { TimetableService } from './time-table.service';
+import { Component, OnInit } from '@angular/core';
+import { TimetableService } from '../services/timetable.service';
 
 @Component({
   selector: 'app-time-table',
@@ -27,6 +27,5 @@ export class TimeTableComponent implements OnInit {
 
   change(){
     this.departures = ['11:00', '10:00'];
-    this.timetableService.PostProduct().subscribe(data => {console.log("asfsa")});
   }
 }

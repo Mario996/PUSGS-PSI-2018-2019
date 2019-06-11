@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -30,6 +31,8 @@ namespace WebApp.Models
         public void Update(TimetableDTO newValue)
         {
             CityOrIntercity = newValue.CityOrIntercity;
+            Line = newValue.Line;
+            LineId = newValue.LineId;
             Departures = newValue.Departures;
             DayOfTheWeek = newValue.DayOfTheWeek;
         }

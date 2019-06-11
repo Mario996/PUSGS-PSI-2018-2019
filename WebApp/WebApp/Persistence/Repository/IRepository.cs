@@ -12,6 +12,7 @@ namespace WebApp.Persistence.Repository
         TEntity Get(TPKey id);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        IEnumerable<TEntity> Include(string path);
 
         void Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);

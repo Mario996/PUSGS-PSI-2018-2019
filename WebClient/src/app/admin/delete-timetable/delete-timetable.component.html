@@ -1,3 +1,11 @@
-<p>
-  delete-timetable works!
-</p>
+<div class="row">
+  <div class="col-xs-12 centriraj">
+    <label class="linijaStajling">Timetables:</label>
+    <hr>
+    <ul class="list-group">
+      <li class="list-group-item linijaStajling" *ngFor="let timetable of timetables; let i = index"> {{timetable.Id}}
+        <button type="button" class="btn btn-danger spejsing" (click)="delete(i)">Delete</button>
+      </li>
+    </ul>
+  </div>
+</div>

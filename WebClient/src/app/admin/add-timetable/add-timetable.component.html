@@ -1,3 +1,34 @@
-<p>
-  add-timetable works!
-</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form [formGroup]="timetableForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+          <label for="cityOrIntercity">City or Intercity</label>
+          <label for="city" class="radio-inline spejsing">
+            <input type="radio" id="city" value=0 formControlName="cityOrIntercity">
+            City
+          </label>
+          <label for="intercity" class="radio-inline spejsing">
+            <input type="radio" id="intercity" value=1 formControlName="cityOrIntercity">
+            Intercity
+          </label>
+      </div>
+      <div class="form-group">
+        <label for="day">Day of the week</label>
+        <input type="text" id="day" formControlName="day" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="departures">Departures</label>
+        <input type="text" id="departures" formControlName="departures" class="form-control">
+      </div>
+      <div class="dropdown spejsing" appDropdown>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button">Weekday<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              <div *ngFor="let line of checkboxLines; let i = index" formArrayName="lines">
+                <li><a style="cursor: pointer;" (click)="setIndex(i)">{{checkboxLines[i].Id}}</a></li>
+              </div>
+          </ul>
+      </div>    
+      <button class="btn btn-primary" type="submit">Create Timetable</button>
+    </form>
+  </div>
+</div>
