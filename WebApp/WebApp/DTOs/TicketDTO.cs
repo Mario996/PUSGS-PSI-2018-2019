@@ -9,7 +9,7 @@ namespace WebApp.DTOs
     public class TicketDTO
     {
         public ApplicationUser ApplicationUser { get; set; }
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public TicketType TicketType { get; set; }
         public int TicketTypeId { get; set; }
         public PriceList PriceList { get; set; }
