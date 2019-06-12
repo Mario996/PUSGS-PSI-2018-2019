@@ -11,15 +11,16 @@ import { PriceListComponent } from './price-list/price-list.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
-import { DropdownDirective } from './dropdown.directive';
+import { DropdownDirective } from './shared/dropdown.directive';
 import { ControlComponent } from './control/control.component';
 import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { LineService } from './services/line.service';
 import { StationService } from './services/station.service';
-import { TimetableService } from './time-table/time-table.service';
+import { TimetableService } from './services/timetable.service';
 import { LoginService } from './services/login.service';
 import { RegisterService } from './services/register.service';
 import { AuthService } from './services/auth.service';
+import { SharedModule } from './shared/shared.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AddHeaderInterceptor } from './add-header-interceptor';
 
@@ -33,7 +34,7 @@ import { AddHeaderInterceptor } from './add-header-interceptor';
     PriceListComponent,
     SigninComponent,
     SignupComponent,
-    DropdownDirective,
+
     ControlComponent,
     UserProfileComponent
     ],
@@ -41,7 +42,8 @@ import { AddHeaderInterceptor } from './add-header-interceptor';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   exports: [
     TimeTableComponent,

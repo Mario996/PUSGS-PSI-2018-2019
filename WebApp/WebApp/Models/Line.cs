@@ -16,6 +16,7 @@ namespace WebApp.Models
         public int LineNumber { get; set; }
         [JsonIgnore]
         public virtual List<Station> Stations { get; set; } = new List<Station>();
+        [JsonIgnore]
         public List<Timetable> Timetables { get; set; } = new List<Timetable>();
         public bool Deleted { get; set; } = false;
 

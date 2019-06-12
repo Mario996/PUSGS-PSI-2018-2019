@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
-import { TimetableService } from 'src/app/time-table/time-table.service';
 import { Station } from 'src/app/model/station.model';
 import { StationService } from 'src/app/services/station.service';
 import { LineService } from 'src/app/services/line.service';
@@ -18,8 +17,7 @@ export class EditStationComponent implements OnInit {
   stations: Station[];
   stationForm: FormGroup;
 
-  constructor(private ttService: TimetableService,
-    private sService: StationService,
+  constructor(private sService: StationService,
     private lService: LineService) { }
 
   ngOnInit() {

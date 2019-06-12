@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApp.DTOs;
 using WebApp.Models;
+using System.Data.Entity;
 using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
@@ -47,9 +48,13 @@ namespace WebApp.Controllers
         public HttpResponseMessage CreateTimetable([FromBody]TimetableDTO timetableDTO)
         {
             Timetable newTimetable = new Timetable();
+            Line l = unitOfWork.Lines.GetAll().Where(a => a.Id == timetableDTO.LineId).SingleOrDefault();
+
             newTimetable.CityOrIntercity = timetableDTO.CityOrIntercity;
             newTimetable.DayOfTheWeek = timetableDTO.DayOfTheWeek;
             newTimetable.Departures = timetableDTO.Departures;
+            newTimetable.Line = l;
+            newTimetable.LineId = l.Id;
 
             unitOfWork.Timetables.Add(newTimetable);
             unitOfWork.Complete();
@@ -66,11 +71,17 @@ namespace WebApp.Controllers
         // PUT api/timetables/5
         public HttpResponseMessage UpdateTimetable(int id, [FromBody]TimetableDTO timetableDTO)
         {
-            var timetableToBeUpdated = unitOfWork.Timetables.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
+            var timetableToBeUpdated = unitOfWork.Timetables.Get(id);
+            Line l = unitOfWork.Lines.GetAll().Where(x => x.Id == timetableDTO.LineId).SingleOrDefault();
+            timetableToBeUpdated.CityOrIntercity = timetableDTO.CityOrIntercity;
+            timetableToBeUpdated.DayOfTheWeek = timetableDTO.DayOfTheWeek;
+            timetableToBeUpdated.Departures = timetableDTO.Departures;
+            timetableToBeUpdated.Line = l;
+            timetableToBeUpdated.LineId = timetableDTO.LineId;
 
             if (timetableToBeUpdated != null)
             {
-                timetableToBeUpdated.Update(timetableDTO);
+                unitOfWork.Timetables.Update(timetableToBeUpdated);
                 unitOfWork.Complete();
 
                 return Request.CreateResponse(HttpStatusCode.OK, timetableToBeUpdated);
@@ -85,8 +96,9 @@ namespace WebApp.Controllers
         // DELETE api/Timetables/5
         public HttpResponseMessage DeleteTimetable(int id)
         {
-            var timetableToBeDeleted = unitOfWork.Timetables.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
-
+            var timetableToBeDeleted = unitOfWork.Timetables.Get(id);
+            Line l = unitOfWork.Lines.GetAll().Where(x => x.Id == timetableToBeDeleted.LineId).SingleOrDefault();
+            timetableToBeDeleted.Line = l;
             if (timetableToBeDeleted != null)
             {
                 timetableToBeDeleted.Deleted = true;

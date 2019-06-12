@@ -15,5 +15,8 @@ namespace WebApp.DTOs
         public string DayOfTheWeek { get; set; }
         [Required]
         public string Departures { get; set; }
+        public Line Line { get; set; } = new Line();
+        public int LineId { get; set; }
+
     }
 }

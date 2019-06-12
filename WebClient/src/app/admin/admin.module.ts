@@ -14,6 +14,9 @@ import { DeleteStationComponent } from './delete-station/delete-station.componen
 import { DeleteTimetableComponent } from './delete-timetable/delete-timetable.component';
 import { AddTimetableComponent } from './add-timetable/add-timetable.component';
 import { EditTimetableComponent } from './edit-timetable/edit-timetable.component';
+import { DropdownDirective } from '../shared/dropdown.directive';
+import { AppModule } from '../app.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -34,7 +37,8 @@ import { EditTimetableComponent } from './edit-timetable/edit-timetable.componen
         CommonModule,
         ReactiveFormsModule,
         AdminRoutingModule,
-        FormsModule
+        FormsModule,
+        SharedModule
     ]
 })
 export class AdminModule {
