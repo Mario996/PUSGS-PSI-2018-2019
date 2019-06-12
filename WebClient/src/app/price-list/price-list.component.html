@@ -1,5 +1,26 @@
 <div class="row">
   <div class="col-xs-12">
+    <div class="dropdown spejsing" appDropdown>
+      <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{ userType }}<span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a style="cursor: pointer;" (click)="changeDay('Monday')">Student</a></li>
+        <li><a style="cursor: pointer;" (click)="changeDay('Tuesday')">Retiree</a></li>
+        <li><a style="cursor: pointer;" (click)="changeDay('Wednesday')">Regular</a></li>
+      </ul>
+    </div>
+    <div class="dropdown spejsing" appDropdown>
+      <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{ ticketType }}<span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <div *ngFor="let line of lines; let i = index">
+          <li><a style="cursor: pointer;" (click)="setIndex(i)">{{lines[i].Id}}</a></li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
     <table>
       <table class="table">
         <thead>

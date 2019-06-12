@@ -1,6 +1,5 @@
 import { Ticket } from './ticket.model';
 import { TicketType } from './ticket-type.model';
-import { Coefficient } from './coefficient.model';
 
 export class PriceList{
     public id: number;
