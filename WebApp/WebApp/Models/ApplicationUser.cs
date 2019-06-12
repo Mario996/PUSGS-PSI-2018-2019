@@ -15,6 +15,7 @@ namespace WebApp.Models
     public class ApplicationUser : IdentityUser
     {
         public List<Ticket> Tickets { get; set; } = new List<Ticket>();
+        public Coefficient Coefficient { get; set; }
         public string Name { get; set; }
         public string Lastname { get; set; }
         public string DateOfBirth { get; set; }

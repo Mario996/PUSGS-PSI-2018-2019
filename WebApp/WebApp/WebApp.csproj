@@ -284,13 +284,21 @@
     <Compile Include="Migrations\201906112142489_VerifiedAddedToUser.Designer.cs">
       <DependentUpon>201906112142489_VerifiedAddedToUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906121828264_ModelV2.cs" />
+    <Compile Include="Migrations\201906121828264_ModelV2.Designer.cs">
+      <DependentUpon>201906121828264_ModelV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906121855370_TicketTypePriceList.cs" />
+    <Compile Include="Migrations\201906121855370_TicketTypePriceList.Designer.cs">
+      <DependentUpon>201906121855370_TicketTypePriceList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Coefficient.cs" />
-    <Compile Include="Models\FinalPrice.cs" />
     <Compile Include="Models\Line.cs" />
+    <Compile Include="Models\PriceList.cs" />
     <Compile Include="Models\Station.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\TicketType.cs" />
@@ -427,6 +435,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906112142489_VerifiedAddedToUser.resx">
       <DependentUpon>201906112142489_VerifiedAddedToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906121828264_ModelV2.resx">
+      <DependentUpon>201906121828264_ModelV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906121855370_TicketTypePriceList.resx">
+      <DependentUpon>201906121855370_TicketTypePriceList.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

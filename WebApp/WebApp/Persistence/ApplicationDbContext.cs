@@ -20,9 +20,9 @@ namespace WebApp.Persistence
         public DbSet<Station> Stations { get; set; }
         public DbSet<Timetable> Timetables { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<FinalPrice> FinalPrices { get; set; }
         public DbSet<Coefficient> Coefficients { get; set; }
         public DbSet<TicketType> TicketTypes { get; set; }
+        public DbSet<PriceList> PriceLists { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

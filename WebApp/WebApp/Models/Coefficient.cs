@@ -13,7 +13,7 @@ namespace WebApp.Models
         public string UserType { get; set; }
         [Required]
         public double DiscountPercentage { get; set; }
-        public List<FinalPrice> FinalPrices { get; set; } = new List<FinalPrice>();
+        public List<ApplicationUser> Users { get; set; } = new List<ApplicationUser>();
         public bool Deleted { get; set; } = false;
 
         public Coefficient()

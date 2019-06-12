@@ -11,7 +11,7 @@ namespace WebApp.Models
         public int Id { get; set; }
         [Required]
         public double Price { get; set; }
-        public List<FinalPrice> FinalPrices { get; set; } = new List<FinalPrice>();
+        public List<PriceList> PriceLists { get; set; } = new List<PriceList>();
         public List<Ticket> Tickets { get; set; } = new List<Ticket>();
         public bool Deleted { get; set; } = false;
 

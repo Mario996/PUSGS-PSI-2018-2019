@@ -8,10 +8,10 @@ namespace WebApp.Models
     public class Ticket
     {
         public int Id { get; set; }
-        public TicketType TicketType { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-        public FinalPrice FinalPrice { get; set; }
-        public DateTime? TimeOfPurchase { get; set; }
+        public TicketType TicketType { get; set; }
+        public PriceList PriceList { get; set; }
+        public DateTime? TimeOfPurchase { get; set; } = DateTime.Now;
         public DateTime? ValidUntil { get; set; }
         public bool Deleted { get; set; } = false;
 

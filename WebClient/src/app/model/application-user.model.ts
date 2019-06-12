@@ -10,6 +10,6 @@ export class ApplicationUser{
     public address: string;
     public userType: string;
     public documentUrl: string;
-
+    public verified : boolean;
     
 }
