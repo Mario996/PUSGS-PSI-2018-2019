@@ -34,6 +34,11 @@ namespace WebApp.Migrations
             //var l1 = new Line { Id = 1, Deleted = false, LineNumber = 7, Stations = new List<Station> { s1, s2 }, Timetables = new List<Timetable> { tt1 } };
             //var l2 = new Line { Id = 2, Deleted = false, LineNumber = 13, Stations = new List<Station> { s1, s3 }, Timetables = new List<Timetable> { tt2 } };
 
+            //var c1 = new Coefficient { Id = 1, Deleted = false, DiscountPercentage = 0.9, Users = null, UserType = "Retiree" };
+            //var c2 = new Coefficient { Id = 1, Deleted = false, DiscountPercentage = 0.8, Users = null, UserType = "Student" };
+            //var c3 = new Coefficient { Id = 1, Deleted = false, DiscountPercentage = 1, Users = null, UserType = "Regular" };
+
+            //var 
 
             //context.Stations.AddOrUpdate(a => a.Id, s1);
             //context.Stations.AddOrUpdate(a => a.Id, s2);

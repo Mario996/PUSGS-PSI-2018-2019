@@ -23,6 +23,8 @@ namespace WebApp.Persistence.UnitOfWork
         [Dependency]
         public ITicketRepository Tickets { get; set; }
         [Dependency]
+        public IPriceListRepository PriceLists { get; set; }
+        [Dependency]
         public ICoefficientRepository Coefficients { get; set; }
         [Dependency]
         public ITicketTypeRepository TicketTypes { get; set; }
