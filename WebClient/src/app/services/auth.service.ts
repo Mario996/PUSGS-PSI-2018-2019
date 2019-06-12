@@ -13,4 +13,18 @@ export class AuthService {
         else
             return false;
     }
+
+    public isAdminAuthenticated() : boolean{
+        if(localStorage.getItem("role") === "Admin")
+            return true;
+        else
+            return false;
+    }
+    
+    public isControllerAuthenticated() : boolean{
+        if(localStorage.getItem("role") === "Controller")
+            return true;
+        else
+            return false;
+    }
 }

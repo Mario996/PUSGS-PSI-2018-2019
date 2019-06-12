@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { ControlComponent } from './control/control.component';
 import { AuthGuard } from './auth.guard';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const appRoutes: Routes = [
     { path: '', component: TimeTableComponent},
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
     { path: 'admin', loadChildren: "./admin/admin.module#AdminModule", canActivate: [AuthGuard]},
     { path: 'control', component: ControlComponent, canActivate: [AuthGuard]},
     { path: 'signup', component: SignupComponent},
+    { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
     { path: 'signin', component: SigninComponent}
 ];
 

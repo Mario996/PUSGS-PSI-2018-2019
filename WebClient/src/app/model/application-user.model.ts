@@ -9,9 +9,7 @@ export class ApplicationUser{
     public dateOfBirth: Date;
     public address: string;
     public userType: string;
-    public imageUrl: string;
+    public documentUrl: string;
 
-    constructor(id: number, username: string, mail: string, password: string, name: string, lastName: string, dateOfBirth: Date, address: string, userType: string, imageUrl: string){
-        
-    }
+    
 }

@@ -20,5 +20,20 @@ export class RegisterService {
   {
     return this.http.post(`${this.endpoint}Account/Register`, user);
   }
+
+  getUserProfile = (username: string) : Observable<any> =>
+  {
+    return this.http.get(`${this.endpoint}Account/UserProfile/` + username);
+  }
+
+  updateUserProfile = (user: ApplicationUser) : Observable<any> =>
+  {
+    return this.http.put(`${this.endpoint}Account/UpdateUserProfile/`, user);
+  }
+
+  getAllUsers() 
+  {
+    return this.http.get(`${this.endpoint}Account/GetAllUsers`);
+  }
 }
 

@@ -18,6 +18,10 @@ namespace WebApp.Persistence.UnitOfWork
         public IStationRepository Stations { get; set; }
         [Dependency]
         public ITimetableRepository Timetables { get; set; }
+        [Dependency]
+        public IUserRepository Users { get; set; }
+        [Dependency]
+        public ITicketRepository Tickets { get; set; }
 
         public DemoUnitOfWork(DbContext context)
         {

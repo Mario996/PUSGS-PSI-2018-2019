@@ -53,7 +53,7 @@ namespace WebApp.Models
         public string Username { get; set; }
 
         [Required]
-        public DateTime? DateOfBirth { get; set; }
+        public string DateOfBirth { get; set; }
 
         [Required]
         public string Address { get; set; }
@@ -65,9 +65,11 @@ namespace WebApp.Models
         public string Lastname { get; set; }
 
         [Required]
-        public string UserType { get; set; }
+        public string UserType { get; set; } = "Regularni";
 
         public string DocumentUrl { get; set; }
+
+        public bool Verified { get; set; }
     }
 
     public class RegisterExternalBindingModel

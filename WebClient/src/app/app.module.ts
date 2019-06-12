@@ -13,13 +13,15 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { DropdownDirective } from './dropdown.directive';
 import { ControlComponent } from './control/control.component';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { LineService } from './services/line.service';
 import { StationService } from './services/station.service';
 import { TimetableService } from './time-table/time-table.service';
 import { LoginService } from './services/login.service';
 import { RegisterService } from './services/register.service';
 import { AuthService } from './services/auth.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AddHeaderInterceptor } from './add-header-interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { AuthService } from './services/auth.service';
     SigninComponent,
     SignupComponent,
     DropdownDirective,
-    ControlComponent
+    ControlComponent,
+    UserProfileComponent
     ],
   imports: [
     BrowserModule,
@@ -50,7 +53,12 @@ import { AuthService } from './services/auth.service';
     StationService,
     LoginService,
     RegisterService,
-    AuthService
+    AuthService,
+    [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddHeaderInterceptor,
+      multi: true,
+    }]
   ],
   bootstrap: [AppComponent]
 })

@@ -44,14 +44,14 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="imagePath">Image URL</label>
-            <input type="text" id="imagePath" ngModel name="imagePath" class="form-control" #imagePath>
+            <label for="documentUrl">Document URL</label>
+            <input type="text" id="documentUrl" ngModel name="documentUrl" class="form-control" #documentUrl>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <img [src]="imagePath.value" class="img-responsive">
+          <img [src]="documentUrl.value" class="img-responsive">
         </div>
       </div>
       <button class="btn btn-primary" type="submit">Sign up</button>

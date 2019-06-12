@@ -31,8 +31,9 @@ export class LoginService{
 
           let role = decodedJwtData.role
 
-          localStorage.setItem('jwt', jwt)
-          localStorage.setItem('role', role);          
+          localStorage.setItem('jwt', jwt);
+          localStorage.setItem('role', role);
+          localStorage.setItem('username', user.username);          
         } );
     }
 }

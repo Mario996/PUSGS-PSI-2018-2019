@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RegisterService } from '../services/register.service';
 import { Router } from '@angular/router';
+import { ApplicationUser } from '../model/application-user.model';
 
 @Component({
   selector: 'app-signup',
@@ -17,11 +18,12 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSignup(user)
+  onSignup(user : ApplicationUser)
   {
+    if(user.userType === "")
+      user.userType = "Regularni";
     this.registerService.registerUser(user).subscribe(
       (response) => {
-        console.log('Registration is successfull!');
         this.router.navigate(['/signin']);
       },
       (error) => {

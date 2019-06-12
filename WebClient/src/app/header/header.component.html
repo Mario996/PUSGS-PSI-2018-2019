@@ -9,10 +9,11 @@
               <li routerLinkActive="active"><a routerLink="/line-network">Line Network</a></li>
               <li routerLinkActive="active"><a routerLink="/vehicle-location">Vehicle Location</a></li>
               <li routerLinkActive="active"><a routerLink="/price-list">Price List</a></li>
-              <li routerLinkActive="active"><a routerLink="/admin">Admin</a></li>
-              <li routerLinkActive="active"><a routerLink="/control">Control</a></li>
+              <li *ngIf="auth.isAdminAuthenticated()"routerLinkActive="active"><a routerLink="/admin">Admin</a></li>
+              <li *ngIf="auth.isControllerAuthenticated()"routerLinkActive="active"><a routerLink="/control">Control</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="auth.isAuthenticated()" ><a routerLink="/profile">Profile</a></li>
                   <li *ngIf="!auth.isAuthenticated()" ><a routerLink="/signup">Register</a></li>
                   <li *ngIf="!auth.isAuthenticated()" ><a routerLink="/signin">Login</a></li>        
 

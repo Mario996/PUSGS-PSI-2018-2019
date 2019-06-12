@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
@@ -17,6 +18,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebApp.Models;
 using WebApp.Persistence;
+using WebApp.Persistence.UnitOfWork;
 using WebApp.Providers;
 using WebApp.Results;
 
@@ -29,10 +31,12 @@ namespace WebApp.Controllers
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
         private ApplicationDbContext _context;
+        private readonly IUnitOfWork unitOfWork;
 
-        public AccountController(ApplicationDbContext context)
+        public AccountController(ApplicationDbContext context, IUnitOfWork iUnitOfWork)
         {
             _context = context;
+            unitOfWork = iUnitOfWork;
         }
 
         public AccountController()
@@ -59,6 +63,58 @@ namespace WebApp.Controllers
         }
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
+
+        [HttpGet]
+        [Authorize(Roles = "Controller")]
+        [Route("GetAllUsers")]
+        public IEnumerable<ApplicationUser>  GetAllUsers()
+        {
+            return unitOfWork.Users.GetAll();
+        }
+
+        // GET api/Account/UserProfile/username
+        [HttpGet]
+        [Authorize(Roles = "AppUser")]
+        [Route("UserProfile/{username}")]
+        public IHttpActionResult UserProfile(string username)
+        {
+            ApplicationUser user = unitOfWork.Users.GetUserByUsername(username);
+           
+
+            RegisterBindingModel userData = new RegisterBindingModel()
+            {
+                Username = user.UserName,
+                Address = user.Address,
+                DateOfBirth = user.DateOfBirth,
+                Email = user.Email,
+                Name = user.Name,
+                Lastname = user.Lastname,
+                UserType = user.UserType,
+                DocumentUrl = user.DocumentImageUrl,
+                Verified = user.Verified
+            };
+
+            return Ok(userData);
+        }
+
+        [Route("UpdateUserProfile")]
+        [Authorize(Roles = "AppUser")]
+        [HttpPut]
+        public IHttpActionResult UpdateUserProfile(RegisterBindingModel userToBeUpdated)
+        {
+            ApplicationUser user = unitOfWork.Users.GetUserByUsername(userToBeUpdated.Username);
+            user.Address = userToBeUpdated.Address;
+            user.DateOfBirth = userToBeUpdated.DateOfBirth;
+            user.Email = userToBeUpdated.Email;
+            user.Name = userToBeUpdated.Name;
+            user.Lastname = userToBeUpdated.Lastname;
+            user.DocumentImageUrl = userToBeUpdated.DocumentUrl;
+
+            if (unitOfWork.Users.UpdateUser(user))
+                return Ok("User profile was successfully updated.");
+            else
+                return BadRequest("User profile failed to update.");
+        }
 
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
@@ -332,6 +388,7 @@ namespace WebApp.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
