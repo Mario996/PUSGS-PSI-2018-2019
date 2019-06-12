@@ -20,9 +20,6 @@ import { TimetableService } from './services/timetable.service';
 import { LoginService } from './services/login.service';
 import { RegisterService } from './services/register.service';
 import { AuthService } from './services/auth.service';
-import { SharedModule } from './shared/shared.module';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { AddHeaderInterceptor } from './add-header-interceptor';
 
 @NgModule({
   declarations: [
@@ -34,9 +31,8 @@ import { AddHeaderInterceptor } from './add-header-interceptor';
     PriceListComponent,
     SigninComponent,
     SignupComponent,
-
-    ControlComponent,
-    UserProfileComponent
+    DropdownDirective,
+    ControlComponent
     ],
   imports: [
     BrowserModule,
