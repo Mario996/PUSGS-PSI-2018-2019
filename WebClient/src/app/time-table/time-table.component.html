@@ -2,32 +2,33 @@
   <div class="row">
     <div class="col-xs-12">
       <label class="text-muted spejsing">
-        <input type="radio" name="tip">
-        Gradski
+        <input type="radio" name="tip" (click)="setCorI('0')">
+        City
       </label>
       <label class="text-muted spejsing">
-        <input type="radio" name="tip">
-        Prigradski
+        <input type="radio" name="tip" (click)="setCorI('1')">
+        Intercity
       </label>
       <div class="dropdown spejsing" appDropdown>
-        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Weekday<span class="caret"></span></a>
+        <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{ day }}<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Monday</a></li>
-          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Tuesday</a></li>
-          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Wednesday</a></li>
-          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Thursday</a></li>
-          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Friday</a></li>
-          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Saturday</a></li>
-          <li><a style="cursor: pointer;" (click)="changeDD('aa')">Sunday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDay('Monday')">Monday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDay('Tuesday')">Tuesday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDay('Wednesday')">Wednesday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDay('Thursday')">Thursday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDay('Friday')">Friday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDay('Saturday')">Saturday</a></li>
+          <li><a style="cursor: pointer;" (click)="changeDay('Sunday')">Sunday</a></li>
         </ul>
       </div>
       <div class="dropdown spejsing" appDropdown>
-        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Lines<span class="caret"></span></a>
-        <div class="dropdown-content">
-          <p *ngFor="let line of lines; let i = index"> {{line}}</p>
-        </div>
+        <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{ lineNumber }}<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <div *ngFor="let line of lines; let i = index">
+            <li><a style="cursor: pointer;" (click)="setIndex(i)">{{lines[i].Id}}</a></li>
+          </div>
+        </ul>
       </div>
-      <button type="button" class="btn spejsing dugme" (click)="change()">Success</button>
     </div>
   </div>
 </div>
@@ -35,7 +36,7 @@
 <div class="row">
   <hr>
   <div class="col-xs-12 centriraj linijaStajling">
-    <p>Linija {{broj}}:</p>
+    <p>Linija {{lineNumber2}}:</p>
   </div>
 </div>
 <div class="row">

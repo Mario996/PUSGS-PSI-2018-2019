@@ -23,27 +23,27 @@ namespace WebApp.Migrations
             //  to avoid creating duplicate seed data.
             #region
 
-            var s1 = new Station { Id = 1, Address = "Micurinova", Latitude = 45, Longitude = 42, Name = "42", Lines = null, Deleted = false };
-            var s2 = new Station { Id = 2, Address = "Maksima Gorkog", Latitude = 45, Longitude = 42, Name = "43", Lines = null, Deleted = false };
-            var s3 = new Station { Id = 3, Address = "Brace Ribnikar", Latitude = 45, Longitude = 42, Name = "44", Lines = null, Deleted = false };
+            //var s1 = new Station { Id = 1, Address = "Micurinova", Latitude = 45, Longitude = 42, Name = "42", Lines = null, Deleted = false };
+            //var s2 = new Station { Id = 2, Address = "Maksima Gorkog", Latitude = 45, Longitude = 42, Name = "43", Lines = null, Deleted = false };
+            //var s3 = new Station { Id = 3, Address = "Brace Ribnikar", Latitude = 45, Longitude = 42, Name = "44", Lines = null, Deleted = false };
 
-            var tt1 = new Timetable { Id = 1, Deleted = false, CityOrIntercity = CityOrIntercity.City, DayOfTheWeek = "Monday", Line = null, Departures = "8,9" };
-            var tt2 = new Timetable { Id = 2, Deleted = false, CityOrIntercity = CityOrIntercity.Intercity, DayOfTheWeek = "Tuesday", Line = null, Departures = "8,9" };
-            var tt3 = new Timetable { Id = 3, Deleted = false, CityOrIntercity = CityOrIntercity.City, DayOfTheWeek = "Wednesday", Line = null, Departures = "8,9" };
+            //var tt1 = new Timetable { Id = 1, Deleted = false, CityOrIntercity = CityOrIntercity.City, DayOfTheWeek = "Monday", Line = null, Departures = "8,9" };
+            //var tt2 = new Timetable { Id = 2, Deleted = false, CityOrIntercity = CityOrIntercity.Intercity, DayOfTheWeek = "Tuesday", Line = null, Departures = "8,9" };
+            //var tt3 = new Timetable { Id = 3, Deleted = false, CityOrIntercity = CityOrIntercity.City, DayOfTheWeek = "Wednesday", Line = null, Departures = "8,9" };
 
-            var l1 = new Line { Id = 1, Deleted = false, LineNumber = 7, Stations = new List<Station> { s1, s2 }, Timetables = new List<Timetable> { tt1 } };
-            var l2 = new Line { Id = 2, Deleted = false, LineNumber = 13, Stations = new List<Station> { s1, s3 }, Timetables = new List<Timetable> { tt2 } };
+            //var l1 = new Line { Id = 1, Deleted = false, LineNumber = 7, Stations = new List<Station> { s1, s2 }, Timetables = new List<Timetable> { tt1 } };
+            //var l2 = new Line { Id = 2, Deleted = false, LineNumber = 13, Stations = new List<Station> { s1, s3 }, Timetables = new List<Timetable> { tt2 } };
 
 
-            context.Stations.AddOrUpdate(a => a.Id, s1);
-            context.Stations.AddOrUpdate(a => a.Id, s2);
-            context.Stations.AddOrUpdate(a => a.Id, s3);
+            //context.Stations.AddOrUpdate(a => a.Id, s1);
+            //context.Stations.AddOrUpdate(a => a.Id, s2);
+            //context.Stations.AddOrUpdate(a => a.Id, s3);
 
-            context.Timetables.AddOrUpdate(a => a.Id, tt1);
-            context.Timetables.AddOrUpdate(a => a.Id, tt2);
+            //context.Timetables.AddOrUpdate(a => a.Id, tt1);
+            //context.Timetables.AddOrUpdate(a => a.Id, tt2);
 
-            context.Lines.AddOrUpdate(a => a.Id, l1);
-            context.Lines.AddOrUpdate(a => a.Id, l2);
+            //context.Lines.AddOrUpdate(a => a.Id, l1);
+            //context.Lines.AddOrUpdate(a => a.Id, l2);
             #endregion
             if (!context.Roles.Any(r => r.Name == "Admin"))
             {
