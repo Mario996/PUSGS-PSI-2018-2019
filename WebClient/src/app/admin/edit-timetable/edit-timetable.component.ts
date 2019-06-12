@@ -16,6 +16,7 @@ export class EditTimetableComponent implements OnInit {
 
   checkboxLines: Line[];
   timetables: Timetable[];
+  lineNumber = "Lines";
   timetableForm: FormGroup;
   line: Line;
   index: number;
@@ -93,5 +94,6 @@ export class EditTimetableComponent implements OnInit {
 
   setIndex(n: number){
     this.index = n;
+    this.lineNumber = this.checkboxLines[n].LineNumber.toString();
   }
 }

@@ -20,6 +20,9 @@ import { TimetableService } from './services/timetable.service';
 import { LoginService } from './services/login.service';
 import { RegisterService } from './services/register.service';
 import { AuthService } from './services/auth.service';
+import { AddHeaderInterceptor } from './add-header-interceptor';
+import { SharedModule } from './shared/shared.module';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +32,9 @@ import { AuthService } from './services/auth.service';
     LineNetworkComponent,
     VehicleLocationComponent,
     PriceListComponent,
+    UserProfileComponent,
     SigninComponent,
     SignupComponent,
-    DropdownDirective,
     ControlComponent
     ],
   imports: [

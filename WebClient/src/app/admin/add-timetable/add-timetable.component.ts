@@ -17,6 +17,7 @@ export class AddTimetableComponent implements OnInit {
   checkboxLines: Line[];
   timetables: Timetable[];
   timetableForm: FormGroup;
+  lineNumber = "Lines";
   line: Line;
   index: number;
 
@@ -91,5 +92,6 @@ export class AddTimetableComponent implements OnInit {
 
   setIndex(n: number){
     this.index = n;
+    this.lineNumber = this.checkboxLines[n].LineNumber.toString();
   }
 }
