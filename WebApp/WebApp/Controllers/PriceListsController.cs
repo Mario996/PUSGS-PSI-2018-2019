@@ -50,17 +50,17 @@ namespace WebApp.Controllers
 
             newPriceList.StartDate = priceListDTO.StartDate;
             newPriceList.EndDate = priceListDTO.EndDate;
-            //foreach (var x in unitOfWork.TicketTypes.GetAll())
-            //{
-            //    foreach (var y in priceListDTO.TicketTypes)
-            //    {
-            //        if (x.Id == y.Id)
-            //        {
-            //            newPriceList.TicketTypes.Add(x);
-            //        }
-            //    }
-            //}
-            //newPriceList.Tickets = priceListDTO.Tickets;
+            foreach (var x in unitOfWork.TicketTypes.GetAll())
+            {
+                foreach (var y in priceListDTO.TicketTypes)
+                {
+                    if (x.Id == y.Id)
+                    {
+                        newPriceList.TicketTypes.Add(x);
+                    }
+                }
+            }
+            newPriceList.Tickets = priceListDTO.Tickets;
 
 
             unitOfWork.PriceLists.Add(newPriceList);
@@ -79,19 +79,19 @@ namespace WebApp.Controllers
         public HttpResponseMessage UpdatePriceList(int id, [FromBody]PriceListDTO priceListDTO)
         {
             var priceListToBeUpdated = unitOfWork.PriceLists.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
-            //List<TicketType> listOfTicketTypes = new List<TicketType>();
-            //foreach (var x in unitOfWork.TicketTypes.GetAll())
-            //{
-            //    foreach (var y in priceListDTO.TicketTypes)
-            //    {
-            //        if (x.Id == y.Id)
-            //        {
-            //            listOfTicketTypes.Add(x);
-            //        }
-            //    }
-            //}
-            //priceListToBeUpdated.TicketTypes.Clear();
-            //priceListToBeUpdated.TicketTypes = listOfTicketTypes;
+            List<TicketType> listOfTicketTypes = new List<TicketType>();
+            foreach (var x in unitOfWork.TicketTypes.GetAll())
+            {
+                foreach (var y in priceListDTO.TicketTypes)
+                {
+                    if (x.Id == y.Id)
+                    {
+                        listOfTicketTypes.Add(x);
+                    }
+                }
+            }
+            priceListToBeUpdated.TicketTypes.Clear();
+            priceListToBeUpdated.TicketTypes = listOfTicketTypes;
             priceListToBeUpdated.StartDate = priceListDTO.StartDate;
             priceListToBeUpdated.EndDate = priceListDTO.EndDate;
 
