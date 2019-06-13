@@ -43,6 +43,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         // POST api/pricelists
         public HttpResponseMessage CreatePriceList([FromBody]PriceListDTO priceListDTO)
         {
@@ -66,6 +67,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         // PUT api/pricelists/5
         public HttpResponseMessage UpdatePriceList(int id, [FromBody]PriceListDTO priceListDTO)
         {
@@ -92,6 +94,7 @@ namespace WebApp.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         // DELETE api/pricelists/5
         public HttpResponseMessage DeletePriceList(int id)
         {

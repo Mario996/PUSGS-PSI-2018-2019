@@ -31,9 +31,9 @@ export class RegisterService {
     return this.http.put(`${this.endpoint}Account/UpdateUserProfile/`, user);
   }
 
-  getAllUsers() 
+  getAllAppUsers() 
   {
-    return this.http.get(`${this.endpoint}Account/GetAllUsers`);
+    return this.http.get(`${this.endpoint}Account/GetAllAppUsers`);
   }
 }
 

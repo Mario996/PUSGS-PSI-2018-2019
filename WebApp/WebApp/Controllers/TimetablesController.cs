@@ -11,6 +11,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class TimetablesController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
@@ -44,6 +45,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         // POST api/timetables
         public HttpResponseMessage CreateTimetable([FromBody]TimetableDTO timetableDTO)
         {
@@ -68,6 +70,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         // PUT api/timetables/5
         public HttpResponseMessage UpdateTimetable(int id, [FromBody]TimetableDTO timetableDTO)
         {
@@ -93,6 +96,7 @@ namespace WebApp.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         // DELETE api/Timetables/5
         public HttpResponseMessage DeleteTimetable(int id)
         {

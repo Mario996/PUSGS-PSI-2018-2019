@@ -68,15 +68,15 @@ namespace WebApp.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Controller")]
-        [Route("GetAllUsers")]
-        public IEnumerable<ApplicationUser>  GetAllUsers()
+        [Route("GetAllAppUsers")]
+        public IEnumerable<ApplicationUser>  GetAllAppUsers()
         {
-            return unitOfWork.Users.GetAll();
+            return unitOfWork.Users.GetAll().Where(x => x.UserType != null);
         }
 
         // GET api/Account/UserProfile/username
         [HttpGet]
-        [Authorize(Roles = "AppUser")]
+        [Authorize(Roles = "AppUser, Controller")]
         [Route("UserProfile/{username}")]
         public IHttpActionResult UserProfile(string username)
         {
@@ -101,7 +101,7 @@ namespace WebApp.Controllers
         }
 
         [Route("UpdateUserProfile")]
-        [Authorize(Roles = "AppUser")]
+        [Authorize(Roles = "AppUser, Controller")]
         [HttpPut]
         public IHttpActionResult UpdateUserProfile(RegisterBindingModel userToBeUpdated)
         {
@@ -112,13 +112,14 @@ namespace WebApp.Controllers
             user.Name = userToBeUpdated.Name;
             user.Lastname = userToBeUpdated.Lastname;
             user.DocumentImageUrl = userToBeUpdated.DocumentUrl;
+            user.Verified = userToBeUpdated.Verified;
             Image i = new Bitmap("C:\\Users\\pc\\Desktop\\najnoviji\\WebClient\\src\\" + user.DocumentImageUrl);
             using (var ms = new MemoryStream())
             {
                 i.Save(ms, i.RawFormat);
                 user.RawImage = ms.ToArray();
             }
-
+            
             if (unitOfWork.Users.UpdateUser(user))
                 return Ok("User profile was successfully updated.");
             else

@@ -10,6 +10,7 @@ import { SigninComponent } from './signin/signin.component';
 import { ControlComponent } from './control/control.component';
 import { AuthGuard } from './auth.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { VerifyProfileComponent } from './verify-profile/verify-profile.component';
 
 const appRoutes: Routes = [
     { path: '', component: TimeTableComponent},
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
     { path: 'control', component: ControlComponent, canActivate: [AuthGuard]},
     { path: 'signup', component: SignupComponent},
     { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
-    { path: 'signin', component: SigninComponent}
+    { path: 'signin', component: SigninComponent},
+    { path: 'verifyprofile/:username', component: VerifyProfileComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

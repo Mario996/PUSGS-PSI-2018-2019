@@ -26,6 +26,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { TicketService } from './services/ticket.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VerifyProfileComponent } from './verify-profile/verify-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserProfileComponent,
     SigninComponent,
     SignupComponent,
-    ControlComponent
+    ControlComponent,
+    VerifyProfileComponent
     ],
   imports: [
     BrowserModule,

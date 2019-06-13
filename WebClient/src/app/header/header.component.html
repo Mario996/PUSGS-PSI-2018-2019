@@ -13,7 +13,7 @@
               <li *ngIf="auth.isControllerAuthenticated()"routerLinkActive="active"><a routerLink="/control">Control</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="auth.isAuthenticated()" ><a routerLink="/profile">Profile</a></li>
+                <li *ngIf="auth.isUserAuthenticated()"><a routerLink="/profile">Profile</a></li>
                   <li *ngIf="!auth.isAuthenticated()" ><a routerLink="/signup">Register</a></li>
                   <li *ngIf="!auth.isAuthenticated()" ><a routerLink="/signin">Login</a></li>        
 

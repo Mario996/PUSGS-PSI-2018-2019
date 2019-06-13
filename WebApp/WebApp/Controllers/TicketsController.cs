@@ -10,6 +10,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/tickets")]
     public class TicketsController : ApiController
     {
@@ -44,6 +45,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("BuyTicketUnregisteredUser")]
         // POST api/tickets/BuyTicketUnregisteredUser
         public HttpResponseMessage BuyTicketUnregisteredUser([FromBody]EmailDTO email)

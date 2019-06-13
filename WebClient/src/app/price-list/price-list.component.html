@@ -27,11 +27,7 @@
   </div>
 </div>
 
-
-
-
-
-<div class="row" *ngIf="auth.isAuthenticated()">
+<div class="row" *ngIf="auth.isAuthenticated() && verifiedUser">
   <div class="col-xs-12">
     <table>
       <table class="table">
@@ -66,5 +62,11 @@
         </tbody>
       </table>
     </table>
+  </div>
+</div>
+
+<div class="row" *ngIf="!verifiedUser">
+  <div class="col-xs-12 centriraj linijaStajling">
+    <p>You need to be verified to buy a ticket</p>
   </div>
 </div>

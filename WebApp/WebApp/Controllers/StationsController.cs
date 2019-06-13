@@ -43,6 +43,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         // POST api/stations
         public HttpResponseMessage CreateStation([FromBody]StationDTO stationDTO)
         {
@@ -74,6 +75,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         // PUT api/stations/5
         public HttpResponseMessage UpdateStation(int id, [FromBody]StationDTO stationDTO)
         {
@@ -109,6 +111,7 @@ namespace WebApp.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         // DELETE api/stations/5
         public HttpResponseMessage DeleteStation(int id)
         {

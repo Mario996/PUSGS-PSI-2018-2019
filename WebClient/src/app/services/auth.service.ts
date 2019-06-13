@@ -14,6 +14,13 @@ export class AuthService {
             return false;
     }
 
+    public isUserAuthenticated() : boolean{
+        if(localStorage.getItem("role") === "AppUser")
+            return true;
+        else
+            return false;
+    }
+
     public isAdminAuthenticated() : boolean{
         if(localStorage.getItem("role") === "Admin")
             return true;

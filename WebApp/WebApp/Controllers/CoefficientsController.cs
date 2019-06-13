@@ -9,6 +9,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class CoefficientsController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;

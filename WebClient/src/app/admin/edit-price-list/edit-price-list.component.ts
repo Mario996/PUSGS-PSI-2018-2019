@@ -65,6 +65,7 @@ export class EditPriceListComponent implements OnInit {
     ticketTypes.push(new TicketType(null, this.priceListForm.value.month,"Month", null,null))
     ticketTypes.push(new TicketType(null, this.priceListForm.value.year,"Year", null,null))
 
+
     var priceList = new PriceList(this.priceListForm.value.id, null, ticketTypes, this.priceListForm.value.start, this.priceListForm.value.end);
 
     return priceList;

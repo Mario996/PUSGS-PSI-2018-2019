@@ -43,6 +43,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         // POST api/lines
         public HttpResponseMessage CreateLine([FromBody]LineDTO lineDTO)
         {
@@ -73,6 +74,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         // PUT api/lines/5
         public HttpResponseMessage UpdateLine(int id, [FromBody]LineDTO lineDTO)
         {
@@ -106,6 +108,7 @@ namespace WebApp.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         // DELETE api/lines/5
         public HttpResponseMessage DeleteLine(int id)
         {
