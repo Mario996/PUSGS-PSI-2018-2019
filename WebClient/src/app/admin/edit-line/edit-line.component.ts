@@ -17,6 +17,8 @@ export class EditLineComponent implements OnInit {
   checkboxStations: Station[];
   lines: Line[];
   lineForm: FormGroup;
+  indexLine: number;
+  lineId = "Line";
 
   constructor(private sService: StationService,
     private lService: LineService) { }
@@ -28,19 +30,18 @@ export class EditLineComponent implements OnInit {
   }
 
   private initForm() {
-    let lineId: number;
     let lineLineNumber = '';
     let lineStations = new FormArray([]);
 
     this.lineForm = new FormGroup({
-      id: new FormControl(lineId),
       lineNumber: new FormControl(lineLineNumber, Validators.required),
       stations: lineStations
     });
   }
 
   onSubmit() {
-    var line = this.mapLine();
+    if (this.lineForm.valid == true) {
+      var line = this.mapLine();
       this.lService.updateLine(line.Id, line).subscribe(
         (response) => {
           console.log(response)
@@ -49,21 +50,22 @@ export class EditLineComponent implements OnInit {
           console.log(error);
         }
       );
+    }
   }
 
-  mapLine(){
+  mapLine() {
     let submitStations: Station[] = [];
     let submitTimetables: Timetable[] = [];
-    this.lineForm.value.stations.forEach((element,index) => {
-      if(element==true){
+    this.lineForm.value.stations.forEach((element, index) => {
+      if (element == true) {
         submitStations.push(this.checkboxStations[index]);
       }
     });
-    var line = new Line(this.lineForm.value.id,this.lineForm.value.lineNumber,submitStations,submitTimetables);
-    
+    var line = new Line(this.indexLine, this.lineForm.value.lineNumber, submitStations, submitTimetables);
+
     return line;
   }
-  
+
   linesRefresh() {
     this.lService.getLines().subscribe(
       (response: Line[]) => {
@@ -74,7 +76,7 @@ export class EditLineComponent implements OnInit {
       }
     );
   }
-    stationsRefresh() {
+  stationsRefresh() {
     this.sService.getStations().subscribe(
       (response: Station[]) => {
         this.checkboxStations = response;
@@ -87,5 +89,10 @@ export class EditLineComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  setIndexLine(n: number) {
+    this.indexLine = this.lines[n].Id;
+    this.lineForm.controls.lineNumber.setValue(this.lines[n].LineNumber);
+    this.lineId = this.lines[n].Id.toString();
   }
 }

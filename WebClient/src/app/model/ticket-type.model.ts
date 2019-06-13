@@ -1,4 +1,3 @@
-import { FinalPrice } from './final-price.model';
 import { Ticket } from './ticket.model';
 import { PriceList } from './price-list.model';
 

@@ -17,8 +17,7 @@ export class AddPriceListComponent implements OnInit {
   priceLists: PriceList[];
   
 
-  constructor(private priceListService: PriceListService,
-    private ticketTypeService: TicketTypeService) { }
+  constructor(private priceListService: PriceListService) { }
 
   ngOnInit() {
     this.initForm();
