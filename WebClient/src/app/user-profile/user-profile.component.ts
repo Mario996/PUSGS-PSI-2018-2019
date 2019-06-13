@@ -11,12 +11,16 @@ import { Router } from '@angular/router';
 export class UserProfileComponent implements OnInit {
   user: ApplicationUser = new ApplicationUser();
 
-  constructor(private registerService : RegisterService, private router: Router) { }
+  constructor(private registerService: RegisterService, private router: Router) { }
 
   ngOnInit() {
     this.registerService.getUserProfile(localStorage.getItem("username")).subscribe(
       (response) => {
         this.user = response;
+
+        // var uints = new Uint8Array(this.user.RawImage);
+        // var base64 = btoa(String.fromCharCode(null, uints));
+        // var url = 'data:image/jpeg;base64,' + base64;
       },
       (error) => {
         console.log(error);
@@ -24,7 +28,7 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  saveChanges(user : ApplicationUser){
+  saveChanges(user: ApplicationUser) {
     this.registerService.updateUserProfile(user).subscribe(
       (response) => {
         this.router.navigate(['/profile']);

@@ -69,6 +69,8 @@ namespace WebApp.Models
 
         public string DocumentUrl { get; set; }
 
+        public byte[] RawImage { get; set; }
+
         public bool Verified { get; set; }
     }
 

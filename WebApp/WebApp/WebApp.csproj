@@ -307,6 +307,10 @@
     <Compile Include="Migrations\201906122041452_CoefficientIdNullable.Designer.cs">
       <DependentUpon>201906122041452_CoefficientIdNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906131542398_userRawImage.cs" />
+    <Compile Include="Migrations\201906131542398_userRawImage.Designer.cs">
+      <DependentUpon>201906131542398_userRawImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -468,6 +472,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906122041452_CoefficientIdNullable.resx">
       <DependentUpon>201906122041452_CoefficientIdNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906131542398_userRawImage.resx">
+      <DependentUpon>201906131542398_userRawImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
