@@ -312,6 +312,10 @@
     <Compile Include="Migrations\201906131542398_userRawImage.Designer.cs">
       <DependentUpon>201906131542398_userRawImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906131803548_DatesToStringTicket.cs" />
+    <Compile Include="Migrations\201906131803548_DatesToStringTicket.Designer.cs">
+      <DependentUpon>201906131803548_DatesToStringTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -476,6 +480,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906131542398_userRawImage.resx">
       <DependentUpon>201906131542398_userRawImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906131803548_DatesToStringTicket.resx">
+      <DependentUpon>201906131803548_DatesToStringTicket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
