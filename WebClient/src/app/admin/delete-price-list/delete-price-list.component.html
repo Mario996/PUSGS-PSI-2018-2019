@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-xs-12 centriraj">
+      <label class="linijaStajling">Lines:</label>
+      <hr>
+      <ul class="list-group">
+        <li class="list-group-item linijaStajling" *ngFor="let priceList of priceLists; let i = index"> {{priceList.Id}}
+          <button type="button" class="btn btn-danger spejsing" (click)="delete(i)">Delete</button>
+        </li>
+      </ul>
+    </div>
+  </div>

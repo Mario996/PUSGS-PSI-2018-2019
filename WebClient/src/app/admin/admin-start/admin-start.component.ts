@@ -41,4 +41,14 @@ export class AdminStartComponent implements OnInit {
   timetableDelete(){
     this.router.navigate(['deleteTimetable'], {relativeTo:this.route})
   }
+  priceListAdd(){
+    this.router.navigate(['addPriceList'], {relativeTo: this.route})
+  }
+  priceListEdit(){
+    this.router.navigate(['editPriceList'], {relativeTo: this.route})
+  }
+  priceListDelete(){
+    this.router.navigate(['deletePriceList'], {relativeTo:this.route})
+  }
+  
 }

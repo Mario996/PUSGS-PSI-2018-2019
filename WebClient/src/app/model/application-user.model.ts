@@ -11,5 +11,5 @@ export class ApplicationUser{
     public userType: string;
     public documentUrl: string;
     public verified : boolean;
-    
+    public RawImage : number[];
 }

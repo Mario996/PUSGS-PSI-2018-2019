@@ -51,16 +51,16 @@ namespace WebApp.Controllers
 
             newTicketType.Price = TicketTypeDTO.Price;
             newTicketType.Name = TicketTypeDTO.Name;
-            //foreach (var x in unitOfWork.PriceLists.GetAll())
-            //{
-            //    foreach (var y in TicketTypeDTO.PriceLists)
-            //    {
-            //        if (x.Id == y.Id)
-            //        {
-            //            newTicketType.PriceLists.Add(x);
-            //        }
-            //    }
-            //}
+            foreach (var x in unitOfWork.PriceLists.GetAll())
+            {
+                foreach (var y in TicketTypeDTO.PriceLists)
+                {
+                    if (x.Id == y.Id)
+                    {
+                        newTicketType.PriceLists.Add(x);
+                    }
+                }
+            }
             newTicketType.Tickets = TicketTypeDTO.Tickets;
 
             unitOfWork.TicketTypes.Add(newTicketType);
@@ -80,18 +80,18 @@ namespace WebApp.Controllers
         {
             var TicketTypeToBeUpdated = unitOfWork.TicketTypes.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
             List<PriceList> listOfPriceLists = new List<PriceList>();
-            //foreach (var x in unitOfWork.PriceLists.GetAll())
-            //{
-            //    foreach (var y in TicketTypeDTO.PriceLists)
-            //    {
-            //        if (x.Id == y.Id)
-            //        {
-            //            listOfPriceLists.Add(x);
-            //        }
-            //    }
-            //}
-            //TicketTypeToBeUpdated.PriceLists.Clear();
-            //TicketTypeToBeUpdated.PriceLists = listOfPriceLists;
+            foreach (var x in unitOfWork.PriceLists.GetAll())
+            {
+                foreach (var y in TicketTypeDTO.PriceLists)
+                {
+                    if (x.Id == y.Id)
+                    {
+                        listOfPriceLists.Add(x);
+                    }
+                }
+            }
+            TicketTypeToBeUpdated.PriceLists.Clear();
+            TicketTypeToBeUpdated.PriceLists = listOfPriceLists;
             TicketTypeToBeUpdated.Price = TicketTypeDTO.Price;
             TicketTypeToBeUpdated.Name = TicketTypeDTO.Name;
 

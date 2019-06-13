@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
@@ -79,7 +81,7 @@ namespace WebApp.Controllers
         public IHttpActionResult UserProfile(string username)
         {
             ApplicationUser user = unitOfWork.Users.GetUserByUsername(username);
-           
+
 
             RegisterBindingModel userData = new RegisterBindingModel()
             {
@@ -91,6 +93,7 @@ namespace WebApp.Controllers
                 Lastname = user.Lastname,
                 UserType = user.UserType,
                 DocumentUrl = user.DocumentImageUrl,
+                RawImage = user.RawImage,
                 Verified = user.Verified
             };
 
@@ -109,6 +112,12 @@ namespace WebApp.Controllers
             user.Name = userToBeUpdated.Name;
             user.Lastname = userToBeUpdated.Lastname;
             user.DocumentImageUrl = userToBeUpdated.DocumentUrl;
+            Image i = new Bitmap("C:\\Users\\pc\\Desktop\\najnoviji\\WebClient\\src\\" + user.DocumentImageUrl);
+            using (var ms = new MemoryStream())
+            {
+                i.Save(ms, i.RawFormat);
+                user.RawImage = ms.ToArray();
+            }
 
             if (unitOfWork.Users.UpdateUser(user))
                 return Ok("User profile was successfully updated.");
@@ -394,7 +403,7 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser()
+                 var user = new ApplicationUser()
             {
                 Id = model.Username,
                 UserName = model.Username,
@@ -405,8 +414,15 @@ namespace WebApp.Controllers
                 Name = model.Name,
                 Lastname = model.Lastname,
                 UserType = model.UserType,
-                DocumentImageUrl = model.DocumentUrl
-            };          
+                DocumentImageUrl = model.DocumentUrl,
+
+            };
+            Image i = new Bitmap("C:\\Users\\pc\\Desktop\\najnoviji\\WebClient\\src\\" + user.DocumentImageUrl);
+            using (var ms = new MemoryStream())
+            {
+                i.Save(ms, i.RawFormat);
+                user.RawImage = ms.ToArray();
+            }
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

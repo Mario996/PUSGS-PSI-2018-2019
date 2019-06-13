@@ -51,6 +51,24 @@ namespace WebApp.Controllers
             unitOfWork.Tickets.BuyTicketUnregistredUser(email.Email);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+            Ticket newTicket = new Ticket();
+            ApplicationUser appU = unitOfWork.Users.GetAll().Where(a => a.Id == ticketDTO.ApplicationUserId).SingleOrDefault();
+            TicketType tt = unitOfWork.TicketTypes.GetAll().Where(a => a.Id == ticketDTO.TicketTypeId).SingleOrDefault();
+            PriceList pl = unitOfWork.PriceLists.GetAll().Where(a => a.Id == ticketDTO.PriceListId).SingleOrDefault();
+
+            newTicket.TimeOfPurchase = ticketDTO.TimeOfPurchase;
+            newTicket.ValidUntil = ticketDTO.ValidUntil;
+            newTicket.ApplicationUser = appU;
+            newTicket.ApplicationUserId = ticketDTO.ApplicationUserId;
+            newTicket.TicketType = tt;
+            newTicket.TicketTypeId = ticketDTO.TicketTypeId;
+            newTicket.PriceList = pl;
+            newTicket.PriceListId = ticketDTO.PriceListId;
+
+            unitOfWork.Tickets.Add(newTicket);
+            unitOfWork.Complete();
+
+            var message = Request.CreateResponse(HttpStatusCode.Created, newTicket);
 
 
     
@@ -60,18 +78,18 @@ namespace WebApp.Controllers
         public HttpResponseMessage UpdateTicket(int id, [FromBody]TicketDTO ticketDTO)
         {
             var ticketToBeUpdated = unitOfWork.Tickets.Get(id);
-            //ApplicationUser appU = unitOfWork.ApplicationUsers.GetAll().Where(a => a.Id == ticketDTO.applicationUserId).SingleOrDefault();
-            //TicketType tt = unitOfWork.TicketTypes.GetAll().Where(a => a.Id == ticketDTO.ticketTypeId).SingleOrDefault();
-            //PriceList pl = unitOfWork.PriceLists.GetAll().Where(a => a.Id == ticketDTO.priceListId).SingleOrDefault();
+            ApplicationUser appU = unitOfWork.Users.GetAll().Where(a => a.Id == ticketDTO.ApplicationUserId).SingleOrDefault();
+            TicketType tt = unitOfWork.TicketTypes.GetAll().Where(a => a.Id == ticketDTO.TicketTypeId).SingleOrDefault();
+            PriceList pl = unitOfWork.PriceLists.GetAll().Where(a => a.Id == ticketDTO.PriceListId).SingleOrDefault();
 
             ticketToBeUpdated.TimeOfPurchase = ticketDTO.TimeOfPurchase;
             ticketToBeUpdated.ValidUntil = ticketDTO.ValidUntil;
-            //newTicket.ApplicationUser = appU;
-            //newTicket.ApplicationUserId = ticketDTO.ApplicationUserId;
-            //newTicket.TicketType = tt;
-            //newTicket.TicketTypeId = ticketDTO.TicketTypeId;
-            //newTicket.PriceList = pl;
-            //newTicket.PriceListId = ticketDTO.PriceListId;
+            ticketToBeUpdated.ApplicationUser = appU;
+            ticketToBeUpdated.ApplicationUserId = ticketDTO.ApplicationUserId;
+            ticketToBeUpdated.TicketType = tt;
+            ticketToBeUpdated.TicketTypeId = ticketDTO.TicketTypeId;
+            ticketToBeUpdated.PriceList = pl;
+            ticketToBeUpdated.PriceListId = ticketDTO.PriceListId;
 
             if (ticketToBeUpdated != null)
             {
