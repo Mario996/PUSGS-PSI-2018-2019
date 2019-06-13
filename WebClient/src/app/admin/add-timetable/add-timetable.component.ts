@@ -38,7 +38,7 @@ export class AddTimetableComponent implements OnInit {
 
     this.timetableForm = new FormGroup({
       cityOrIntercity: new FormControl(timetableCityOrIntercity, Validators.required),
-      day: new FormControl(timetableDayOfTheWeek, Validators.required),
+      day: new FormControl(timetableDayOfTheWeek, [Validators.required, Validators.pattern(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$/)]),
       departures: new FormControl(timetableDepartures, [Validators.required, Validators.pattern(/^((0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]+)(,|\s+|(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]+)*$/)]),
       lines: timetableLines
     });

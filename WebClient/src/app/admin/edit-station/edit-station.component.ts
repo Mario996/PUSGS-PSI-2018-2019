@@ -16,6 +16,9 @@ export class EditStationComponent implements OnInit {
   checkboxLines: Line[];
   stations: Station[];
   stationForm: FormGroup;
+  indexStation: number;
+  stationId = "Stations";
+
 
   constructor(private sService: StationService,
     private lService: LineService) { }
@@ -27,7 +30,6 @@ export class EditStationComponent implements OnInit {
   }
 
   private initForm() {
-    let stationId = '';
     let stationName = '';
     let stationAdress = '';
     let stationLongitude = '';
@@ -35,7 +37,6 @@ export class EditStationComponent implements OnInit {
     let stationLines = new FormArray([]);
 
     this.stationForm = new FormGroup({
-      id: new FormControl(stationId, Validators.required),
       name: new FormControl(stationName, Validators.required),
       address: new FormControl(stationAdress, Validators.required),
       longitude: new FormControl(stationLongitude, Validators.required),
@@ -45,7 +46,8 @@ export class EditStationComponent implements OnInit {
   }
 
   onSubmit() {
-    var station = this.mapStation();
+    if (this.stationForm.valid == true) {
+      var station = this.mapStation();
       this.sService.updateStation(station.Id, station).subscribe(
         (response) => {
           console.log(response)
@@ -54,20 +56,20 @@ export class EditStationComponent implements OnInit {
           console.log(error);
         }
       );
+    }
   }
-
-  mapStation(){
+  mapStation() {
     let submitLines: Line[] = [];
-    this.stationForm.value.lines.forEach((element,index) => {
-      if(element==true){
+    this.stationForm.value.lines.forEach((element, index) => {
+      if (element == true) {
         submitLines.push(this.checkboxLines[index]);
       }
     });
-    var station = new Station(this.stationForm.value.id, this.stationForm.value.name, this.stationForm.value.address, this.stationForm.value.longitude, this.stationForm.value.latitude, submitLines);
-    
+    var station = new Station(this.indexStation, this.stationForm.value.name, this.stationForm.value.address, this.stationForm.value.longitude, this.stationForm.value.latitude, submitLines);
+
     return station;
   }
-  
+
   stationsRefresh() {
     this.sService.getStations().subscribe(
       (response: Station[]) => {
@@ -78,7 +80,7 @@ export class EditStationComponent implements OnInit {
       }
     );
   }
-    linesRefresh() {
+  linesRefresh() {
     this.lService.getLines().subscribe(
       (response: Line[]) => {
         this.checkboxLines = response;
@@ -91,5 +93,14 @@ export class EditStationComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  setIndexStation(n: number) {
+    this.indexStation = this.stations[n].Id;
+    this.stationForm.controls.name.setValue(this.stations[n].Name);
+    this.stationForm.controls.address.setValue(this.stations[n].Address);
+    this.stationForm.controls.longitude.setValue(this.stations[n].Longitude);
+    this.stationForm.controls.latitude.setValue(this.stations[n].Latitude);
+    this.stationId = this.stations[n].Id.toString();
   }
 }

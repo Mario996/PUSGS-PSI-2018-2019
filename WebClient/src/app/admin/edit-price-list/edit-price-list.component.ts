@@ -11,11 +11,12 @@ import { TicketType } from 'src/app/model/ticket-type.model';
   styleUrls: ['./edit-price-list.component.css']
 })
 export class EditPriceListComponent implements OnInit {
-  
+
   priceListForm: FormGroup;
   ticketTypes: TicketType[];
   priceLists: PriceList[];
-  
+  indexPriceList: number;
+  priceListId = "Price List";
 
   constructor(private priceListService: PriceListService,
     private ticketTypeService: TicketTypeService) { }
@@ -26,7 +27,6 @@ export class EditPriceListComponent implements OnInit {
   }
 
   private initForm() {
-    let priceListId = '';
     let priceListStart = '';
     let priceListEnd = '';
     let priceListTime = '';
@@ -35,7 +35,6 @@ export class EditPriceListComponent implements OnInit {
     let priceListYear = '';
 
     this.priceListForm = new FormGroup({
-      id: new FormControl(priceListId, Validators.required),
       start: new FormControl(priceListStart, Validators.required),
       end: new FormControl(priceListEnd, Validators.required),
       time: new FormControl(priceListTime, Validators.required),
@@ -46,27 +45,28 @@ export class EditPriceListComponent implements OnInit {
   }
 
   onSubmit() {
-    var priceList = this.mapPriceList();
-    this.priceListService.editPriceList(priceList.Id,priceList).subscribe(
-      (response) => {
-        console.log(response)
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if (this.priceListForm.valid == true) {
+      var priceList = this.mapPriceList();
+      this.priceListService.editPriceList(priceList.Id, priceList).subscribe(
+        (response) => {
+          console.log(response)
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   mapPriceList() {
-    var ticketTypes : TicketType[] = [];
+    var ticketTypes: TicketType[] = [];
 
-    ticketTypes.push(new TicketType(null, this.priceListForm.value.time,"Time", null,null))
-    ticketTypes.push(new TicketType(null, this.priceListForm.value.day,"Day", null,null))
-    ticketTypes.push(new TicketType(null, this.priceListForm.value.month,"Month", null,null))
-    ticketTypes.push(new TicketType(null, this.priceListForm.value.year,"Year", null,null))
+    ticketTypes.push(new TicketType(null, this.priceListForm.value.time, "Time", null, null))
+    ticketTypes.push(new TicketType(null, this.priceListForm.value.day, "Day", null, null))
+    ticketTypes.push(new TicketType(null, this.priceListForm.value.month, "Month", null, null))
+    ticketTypes.push(new TicketType(null, this.priceListForm.value.year, "Year", null, null))
 
-
-    var priceList = new PriceList(this.priceListForm.value.id, null, ticketTypes, this.priceListForm.value.start, this.priceListForm.value.end);
+    var priceList = new PriceList(this.indexPriceList, null, ticketTypes, this.priceListForm.value.start, this.priceListForm.value.end);
 
     return priceList;
   }
@@ -81,7 +81,12 @@ export class EditPriceListComponent implements OnInit {
       }
     );
   }
-  
 
-  
+
+  setIndexPriceList(n: number) {
+    this.indexPriceList = this.priceLists[n].Id;
+    this.priceListForm.controls.start.setValue(this.priceLists[n].StartDate);
+    this.priceListForm.controls.end.setValue(this.priceLists[n].EndDate);
+    this.priceListId = this.priceLists[n].Id.toString();
+  }
 }

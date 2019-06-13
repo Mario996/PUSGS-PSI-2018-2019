@@ -1,9 +1,16 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     <form [formGroup]="timetableForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="id">Id</label>
-        <input type="number" id="id" formControlName="id" class="form-control">
+      <div class="row">
+        <div class="dropdown spejsing" appDropdown>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{timetableId}}<span
+              class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <div *ngFor="let timetable of timetables; let i = index">
+              <li><a style="cursor: pointer;" (click)="setIndexTimetable(i)">{{timetables[i].Id}}</a></li>
+            </div>
+          </ul>
+        </div>
       </div>
       <div class="form-group">
         <label for="cityOrIntercity">City or Intercity</label>
@@ -28,7 +35,7 @@
         <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{lineNumber}}<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <div *ngFor="let line of checkboxLines; let i = index" formArrayName="lines">
-            <li><a style="cursor: pointer;" (click)="setIndex(i)">{{checkboxLines[i].Id}}</a></li>
+            <li><a style="cursor: pointer;" (click)="setIndexLine(i)">{{checkboxLines[i].Id}}</a></li>
           </div>
         </ul>
       </div>

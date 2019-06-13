@@ -17,9 +17,11 @@ export class EditTimetableComponent implements OnInit {
   checkboxLines: Line[];
   timetables: Timetable[];
   lineNumber = "Lines";
+  timetableId = "Timetables";
   timetableForm: FormGroup;
   line: Line;
-  index: number;
+  indexLine: number;
+  indexTimetable: number;
 
   constructor(private ttService: TimetableService,
     private lService: LineService) { }
@@ -31,38 +33,37 @@ export class EditTimetableComponent implements OnInit {
   }
 
   private initForm() {
-    let timetableId = '';
-    let timetableCityOrIntercity = '';
-    let timetableDayOfTheWeek = '';
+    var timetableCityOrIntercity = '';
+    var timetableDayOfTheWeek = '';
     let timetableDepartures = '';
     let timetableLines = new FormArray([]);
 
     this.timetableForm = new FormGroup({
-      id: new FormControl(timetableId, Validators.required),
       cityOrIntercity: new FormControl(timetableCityOrIntercity, Validators.required),
-      day: new FormControl(timetableDayOfTheWeek, Validators.required),
+      day: new FormControl(timetableDayOfTheWeek, [Validators.required, Validators.pattern(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$/)]),
       departures: new FormControl(timetableDepartures, [Validators.required, Validators.pattern(/^((0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]+)(,|\s+|(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]+)*$/)]),
       lines: timetableLines
     });
   }
 
   onSubmit() {
-    if(this.timetableForm.valid == true){
-    var timetable = this.mapTimetable();
-    this.ttService.editTimetable(timetable.Id,timetable).subscribe(
-      (response) => {
-        console.log(response)
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }}  
+    if (this.timetableForm.valid == true) {
+      var timetable = this.mapTimetable();
+      this.ttService.editTimetable(timetable.Id, timetable).subscribe(
+        (response) => {
+          console.log(response)
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }
 
   mapTimetable() {
     let submitLine: Line;
-        submitLine = this.checkboxLines[this.index];
-    var timetable = new Timetable(this.timetableForm.value.id, this.timetableForm.value.cityOrIntercity, this.timetableForm.value.day, submitLine, submitLine.Id, this.timetableForm.value.departures);
+    submitLine = this.checkboxLines[this.indexLine];
+    var timetable = new Timetable(this.indexTimetable, this.timetableForm.value.cityOrIntercity, this.timetableForm.value.day, submitLine, submitLine.Id, this.timetableForm.value.departures);
 
     return timetable;
   }
@@ -92,8 +93,14 @@ export class EditTimetableComponent implements OnInit {
     );
   }
 
-  setIndex(n: number){
-    this.index = n;
+  setIndexLine(n: number) {
+    this.indexLine = n;
     this.lineNumber = this.checkboxLines[n].LineNumber.toString();
+  }
+  setIndexTimetable(n: number) {
+    this.indexTimetable = this.timetables[n].Id;
+    this.timetableForm.controls.day.setValue(this.timetables[n].DayOfTheWeek);
+    this.timetableForm.controls.departures.setValue(this.timetables[n].Departures);
+    this.timetableId = this.timetables[n].Id.toString();
   }
 }

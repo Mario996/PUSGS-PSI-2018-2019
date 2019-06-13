@@ -1,3 +1,8 @@
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
 .visina{
     max-height: 50px;
     align-self: auto;

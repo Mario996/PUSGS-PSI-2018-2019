@@ -2,10 +2,16 @@
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     <form [formGroup]="lineForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="id">Id</label>
-        <input type="number" id="id" formControlName="id" class="form-control">
+        <div class="dropdown spejsing" appDropdown>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{lineId}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <div *ngFor="let line of lines; let i = index">
+              <li><a style="cursor: pointer;" (click)="setIndexLine(i)">{{lines[i].Id}}</a></li>
+            </div>
+          </ul>
+        </div>
       </div>
-      <div class="form-group">
+     <div class="form-group">
         <label for="lineNumber">Line Number</label>
         <input type="number" id="lineNumber" formControlName="lineNumber" class="form-control">
       </div>

@@ -1,35 +1,35 @@
 <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form #f="ngForm" (ngSubmit)="saveChanges(f.value)" >      
+      <form [formGroup]="profileForm" #f="ngForm" (ngSubmit)="saveChanges(f.value)" >      
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" [(ngModel)]="user.Email" class="form-control">
+          <input type="email" id="email" formControlName="email" [(ngModel)]="user.Email" class="form-control">
         </div>
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" [(ngModel)]="user.Username" class="form-control">
+            <input type="text" id="username" formControlName="username" [(ngModel)]="user.Username" class="form-control">
           </div>
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" [(ngModel)]="user.Name" class="form-control">
+          <input type="text" id="name" formControlName="name" [(ngModel)]="user.Name" class="form-control">
         </div>
         <div class="form-group">
           <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" [(ngModel)]="user.Lastname" class="form-control">
+          <input type="text" id="lastName" formControlName="lastName" [(ngModel)]="user.Lastname" class="form-control">
         </div>
         <div class="form-group">
           <label for="date">Date of birth</label>
-          <input type="date" id="date" name="dateOfBirth" [(ngModel)]="user.DateOfBirth" class="form-control">
+          <input type="date" id="date" formControlName="dateOfBirth" [(ngModel)]="user.DateOfBirth" class="form-control">
         </div>
         <div class="form-group">
           <label for="address">Address</label>
-          <input type="address" id="address" name="address" [(ngModel)]="user.Address" class="form-control">
+          <input type="address" id="address" formControlName="address" [(ngModel)]="user.Address" class="form-control">
         </div>
         <div class="row">
           <div class="col-xs-12">
             <div class="form-group">
               <label for="documentUrl">Document URL</label>
-              <input type="text" id="documentUrl" [(ngModel)]="user.DocumentUrl" name="documentUrl" class="form-control" #documentUrl>
+              <input type="text" id="documentUrl" [(ngModel)]="user.DocumentUrl" formControlName="documentUrl" class="form-control" #documentUrl>
             </div>
           </div>
         </div>
