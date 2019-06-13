@@ -258,6 +258,7 @@
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TicketTypesController.cs" />
     <Compile Include="Controllers\TimetablesController.cs" />
+    <Compile Include="DTOs\EmailDTO.cs" />
     <Compile Include="DTOs\LineDTO.cs" />
     <Compile Include="DTOs\PriceListDTO.cs" />
     <Compile Include="DTOs\StationDTO.cs" />

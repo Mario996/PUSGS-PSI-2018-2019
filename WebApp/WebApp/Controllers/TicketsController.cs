@@ -10,6 +10,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("api/tickets")]
     public class TicketsController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
@@ -43,33 +44,16 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        // POST api/tickets
-        public HttpResponseMessage CreateTicket([FromBody]TicketDTO ticketDTO)
+        [Route("BuyTicketUnregisteredUser")]
+        // POST api/tickets/BuyTicketUnregisteredUser
+        public HttpResponseMessage BuyTicketUnregisteredUser([FromBody]EmailDTO email)
         {
-            Ticket newTicket = new Ticket();
-            //ApplicationUser appU = unitOfWork.ApplicationUsers.GetAll().Where(a => a.Id == ticketDTO.applicationUserId).SingleOrDefault();
-            //TicketType tt = unitOfWork.TicketTypes.GetAll().Where(a => a.Id == ticketDTO.ticketTypeId).SingleOrDefault();
-            //PriceList pl = unitOfWork.PriceLists.GetAll().Where(a => a.Id == ticketDTO.priceListId).SingleOrDefault();
-
-            newTicket.TimeOfPurchase = ticketDTO.TimeOfPurchase;
-            newTicket.ValidUntil = ticketDTO.ValidUntil;
-            //newTicket.ApplicationUser = appU;
-            //newTicket.ApplicationUserId = ticketDTO.ApplicationUserId;
-            //newTicket.TicketType = tt;
-            //newTicket.TicketTypeId = ticketDTO.TicketTypeId;
-            //newTicket.PriceList = pl;
-            //newTicket.PriceListId = ticketDTO.PriceListId;
-
-            unitOfWork.Tickets.Add(newTicket);
-            unitOfWork.Complete();
-
-            var message = Request.CreateResponse(HttpStatusCode.Created, newTicket);
-
-            message.Headers.Location = new Uri(Request.RequestUri + "/" + newTicket.Id.ToString());
-
-            return message;
-
+            unitOfWork.Tickets.BuyTicketUnregistredUser(email.Email);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+
+    
 
         [HttpPut]
         // PUT api/tickets/5
@@ -102,32 +86,6 @@ namespace WebApp.Controllers
             }
         }
 
-        [HttpDelete]
-        // DELETE api/Tickets/5
-        public HttpResponseMessage DeleteTicket(int id)
-        {
-            var ticketToBeDeleted = unitOfWork.Tickets.Get(id);
-            //ApplicationUser appU = unitOfWork.ApplicationUsers.GetAll().Where(a => a.Id == ticketDTO.applicationUserId).SingleOrDefault();
-            //TicketType tt = unitOfWork.TicketTypes.GetAll().Where(a => a.Id == ticketDTO.ticketTypeId).SingleOrDefault();
-            //PriceList pl = unitOfWork.PriceLists.GetAll().Where(a => a.Id == ticketDTO.priceListId).SingleOrDefault();
-
-            //ticketToBeDeleted.TimeOfPurchase = ticketDTO.TimeOfPurchase;
-            //ticketToBeDeleted.ValidUntil = ticketDTO.ValidUntil;
-            //newTicket.ApplicationUser = appU;
-            //newTicket.TicketType = tt;
-            //newTicket.PriceList = pl;
-
-            if (ticketToBeDeleted != null)
-            {
-                ticketToBeDeleted.Deleted = true;
-                unitOfWork.Complete();
-
-                return Request.CreateResponse(HttpStatusCode.OK, id);
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Ticket with that id number doesn't exist.");
-            }
-        }
+ 
     }
 }

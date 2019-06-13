@@ -23,6 +23,9 @@ import { AuthService } from './services/auth.service';
 import { AddHeaderInterceptor } from './add-header-interceptor';
 import { SharedModule } from './shared/shared.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { TicketService } from './services/ticket.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added
   ],
   exports: [
     TimeTableComponent,
@@ -55,6 +60,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     LoginService,
     RegisterService,
     AuthService,
+    TicketService,
     [{
       provide: HTTP_INTERCEPTORS,
       useClass: AddHeaderInterceptor,
