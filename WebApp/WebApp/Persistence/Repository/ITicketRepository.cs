@@ -9,7 +9,7 @@ namespace WebApp.Persistence.Repository
 {
     public interface ITicketRepository : IRepository<Ticket, int>
     {
-        //Ticket BuyTicketUnregistredUser();
+        void BuyTicketUnregistredUser(string email);
         //Ticket BuyTicketVerifiedUser();
     }
 }

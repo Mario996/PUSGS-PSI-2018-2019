@@ -14,8 +14,8 @@ namespace WebApp.DTOs
         public int TicketTypeId { get; set; }
         public PriceList PriceList { get; set; }
         public int PriceListId { get; set; }
-        public DateTime? TimeOfPurchase { get; set; } = DateTime.Now;
-        public DateTime? ValidUntil { get; set; }
+        public string TimeOfPurchase { get; set; }
+        public string ValidUntil { get; set; }
         public bool Deleted { get; set; } = false;
 
     }

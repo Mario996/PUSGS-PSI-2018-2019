@@ -10,6 +10,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("api/tickets")]
     public class TicketsController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
@@ -43,89 +44,73 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        // POST api/tickets
-        public HttpResponseMessage CreateTicket([FromBody]TicketDTO ticketDTO)
+        [Route("BuyTicketUnregisteredUser")]
+        // POST api/tickets/BuyTicketUnregisteredUser
+        public HttpResponseMessage BuyTicketUnregisteredUser([FromBody]EmailDTO email)
         {
-            Ticket newTicket = new Ticket();
-            ApplicationUser appU = unitOfWork.Users.GetAll().Where(a => a.Id == ticketDTO.ApplicationUserId).SingleOrDefault();
-            TicketType tt = unitOfWork.TicketTypes.GetAll().Where(a => a.Id == ticketDTO.TicketTypeId).SingleOrDefault();
-            PriceList pl = unitOfWork.PriceLists.GetAll().Where(a => a.Id == ticketDTO.PriceListId).SingleOrDefault();
-
-            newTicket.TimeOfPurchase = ticketDTO.TimeOfPurchase;
-            newTicket.ValidUntil = ticketDTO.ValidUntil;
-            newTicket.ApplicationUser = appU;
-            newTicket.ApplicationUserId = ticketDTO.ApplicationUserId;
-            newTicket.TicketType = tt;
-            newTicket.TicketTypeId = ticketDTO.TicketTypeId;
-            newTicket.PriceList = pl;
-            newTicket.PriceListId = ticketDTO.PriceListId;
-
-            unitOfWork.Tickets.Add(newTicket);
-            unitOfWork.Complete();
-
-            var message = Request.CreateResponse(HttpStatusCode.Created, newTicket);
-
-            message.Headers.Location = new Uri(Request.RequestUri + "/" + newTicket.Id.ToString());
-
-            return message;
-
+            unitOfWork.Tickets.BuyTicketUnregistredUser(email.Email);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [HttpPut]
-        // PUT api/tickets/5
-        public HttpResponseMessage UpdateTicket(int id, [FromBody]TicketDTO ticketDTO)
+        [HttpPost]
+        [Route("BuyTicketRegisteredUser")]
+        public HttpResponseMessage BuyTicketRegisteredUser([FromBody]TicketDTO email)
         {
-            var ticketToBeUpdated = unitOfWork.Tickets.Get(id);
-            ApplicationUser appU = unitOfWork.Users.GetAll().Where(a => a.Id == ticketDTO.ApplicationUserId).SingleOrDefault();
-            TicketType tt = unitOfWork.TicketTypes.GetAll().Where(a => a.Id == ticketDTO.TicketTypeId).SingleOrDefault();
-            PriceList pl = unitOfWork.PriceLists.GetAll().Where(a => a.Id == ticketDTO.PriceListId).SingleOrDefault();
+            //Ticket newTicket = new Ticket();
+            //ApplicationUser appU = unitOfWork.Users.GetAll().Where(a => a.Id == ticketDTO.ApplicationUserId).SingleOrDefault();
+            //TicketType tt = unitOfWork.TicketTypes.GetAll().Where(a => a.Id == ticketDTO.TicketTypeId).SingleOrDefault();
+            //PriceList pl = unitOfWork.PriceLists.GetAll().Where(a => a.Id == ticketDTO.PriceListId).SingleOrDefault();
 
-            ticketToBeUpdated.TimeOfPurchase = ticketDTO.TimeOfPurchase;
-            ticketToBeUpdated.ValidUntil = ticketDTO.ValidUntil;
-            ticketToBeUpdated.ApplicationUser = appU;
-            ticketToBeUpdated.ApplicationUserId = ticketDTO.ApplicationUserId;
-            ticketToBeUpdated.TicketType = tt;
-            ticketToBeUpdated.TicketTypeId = ticketDTO.TicketTypeId;
-            ticketToBeUpdated.PriceList = pl;
-            ticketToBeUpdated.PriceListId = ticketDTO.PriceListId;
+            //newTicket.TimeOfPurchase = ticketDTO.TimeOfPurchase;
+            //newTicket.ValidUntil = ticketDTO.ValidUntil;
+            //newTicket.ApplicationUser = appU;
+            //newTicket.ApplicationUserId = ticketDTO.ApplicationUserId;
+            //newTicket.TicketType = tt;
+            //newTicket.TicketTypeId = ticketDTO.TicketTypeId;
+            //newTicket.PriceList = pl;
+            //newTicket.PriceListId = ticketDTO.PriceListId;
 
-            if (ticketToBeUpdated != null)
-            {
-                unitOfWork.Tickets.Update(ticketToBeUpdated);
-                unitOfWork.Complete();
+            //unitOfWork.Tickets.Add(newTicket);
+            //unitOfWork.Complete();
 
-                return Request.CreateResponse(HttpStatusCode.OK, ticketToBeUpdated);
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Ticket with that id number doesn't exist.");
-            }
+            //var message = Request.CreateResponse(HttpStatusCode.Created, newTicket);
+
+            //message.Headers.Location = new Uri(Request.RequestUri + "/" + newTicket.Id.ToString());
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [HttpDelete]
-        // DELETE api/Tickets/5
-        public HttpResponseMessage DeleteTicket(int id)
-        {
-            var ticketToBeDeleted = unitOfWork.Tickets.Get(id);
-            ApplicationUser appU = unitOfWork.Users.GetAll().Where(a => a.Id == ticketToBeDeleted.ApplicationUserId).SingleOrDefault();
-            TicketType tt = unitOfWork.TicketTypes.GetAll().Where(a => a.Id == ticketToBeDeleted.TicketTypeId).SingleOrDefault();
-            PriceList pl = unitOfWork.PriceLists.GetAll().Where(a => a.Id == ticketToBeDeleted.PriceListId).SingleOrDefault();
-           
-            ticketToBeDeleted.ApplicationUser = appU;
-            ticketToBeDeleted.TicketType = tt;
-            ticketToBeDeleted.PriceList = pl;
+        //[HttpPut]
+        //// PUT api/tickets/5
+        //public HttpResponseMessage UpdateTicket(int id, [FromBody]TicketDTO ticketDTO)
+        //{
+        //    var ticketToBeUpdated = unitOfWork.Tickets.Get(id);
+        //    ApplicationUser appU = unitOfWork.Users.GetAll().Where(a => a.Id == ticketDTO.ApplicationUserId).SingleOrDefault();
+        //    TicketType tt = unitOfWork.TicketTypes.GetAll().Where(a => a.Id == ticketDTO.TicketTypeId).SingleOrDefault();
+        //    PriceList pl = unitOfWork.PriceLists.GetAll().Where(a => a.Id == ticketDTO.PriceListId).SingleOrDefault();
 
-            if (ticketToBeDeleted != null)
-            {
-                ticketToBeDeleted.Deleted = true;
-                unitOfWork.Complete();
+        //    ticketToBeUpdated.TimeOfPurchase = ticketDTO.TimeOfPurchase;
+        //    ticketToBeUpdated.ValidUntil = ticketDTO.ValidUntil;
+        //    ticketToBeUpdated.ApplicationUser = appU;
+        //    ticketToBeUpdated.ApplicationUserId = ticketDTO.ApplicationUserId;
+        //    ticketToBeUpdated.TicketType = tt;
+        //    ticketToBeUpdated.TicketTypeId = ticketDTO.TicketTypeId;
+        //    ticketToBeUpdated.PriceList = pl;
+        //    ticketToBeUpdated.PriceListId = ticketDTO.PriceListId;
 
-                return Request.CreateResponse(HttpStatusCode.OK, id);
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Ticket with that id number doesn't exist.");
-            }
-        }
+        //    if (ticketToBeUpdated != null)
+        //    {
+        //        unitOfWork.Tickets.Update(ticketToBeUpdated);
+        //        unitOfWork.Complete();
+
+        //        return Request.CreateResponse(HttpStatusCode.OK, ticketToBeUpdated);
+        //    }
+        //    else
+        //    {
+        //        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Ticket with that id number doesn't exist.");
+        //    }
+        //}
+
+ 
     }
 }

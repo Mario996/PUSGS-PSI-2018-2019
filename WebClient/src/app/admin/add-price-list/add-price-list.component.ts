@@ -56,10 +56,10 @@ export class AddPriceListComponent implements OnInit {
   mapPriceList() {
     var ticketTypes : TicketType[] = [];
 
-    ticketTypes.push(new TicketType(null, this.priceListForm.value.time,"Time", null,null))
-    ticketTypes.push(new TicketType(null, this.priceListForm.value.day,"Day", null,null))
-    ticketTypes.push(new TicketType(null, this.priceListForm.value.month,"Month", null,null))
-    ticketTypes.push(new TicketType(null, this.priceListForm.value.year,"Year", null,null))
+    ticketTypes.push(new TicketType(null, this.priceListForm.value.time,"Time", null,null));
+    ticketTypes.push(new TicketType(null, this.priceListForm.value.day,"Day", null,null));
+    ticketTypes.push(new TicketType(null, this.priceListForm.value.month,"Month", null,null));
+    ticketTypes.push(new TicketType(null, this.priceListForm.value.year,"Year", null,null));
 
     var priceList = new PriceList(null, null, ticketTypes, this.priceListForm.value.start, this.priceListForm.value.end);
 

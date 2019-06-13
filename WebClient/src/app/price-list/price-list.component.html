@@ -1,25 +1,37 @@
-<div class="row">
+<div class="row" *ngIf="!auth.isAuthenticated()">
   <div class="col-xs-12">
-    <div class="dropdown spejsing" appDropdown>
-      <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{ userType }}<span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <li><a style="cursor: pointer;" (click)="changeDay('Monday')">Student</a></li>
-        <li><a style="cursor: pointer;" (click)="changeDay('Tuesday')">Retiree</a></li>
-        <li><a style="cursor: pointer;" (click)="changeDay('Wednesday')">Regular</a></li>
-      </ul>
-    </div>
-    <div class="dropdown spejsing" appDropdown>
-      <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{ ticketType }}<span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <div *ngFor="let line of lines; let i = index">
-          <li><a style="cursor: pointer;" (click)="setIndex(i)">{{lines[i].Id}}</a></li>
-        </div>
-      </ul>
-    </div>
+    <form #f="ngForm" (ngSubmit)="BuyTicketUnregisteredUser(f.value)">
+      <div class="form-group">
+          <label for="email">Mail</label>
+          <input type="email" id="email" name="email" ngModel class="form-control">
+      </div>
+    <table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Type of Ticket</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Hourly</th>
+            <td>200$</td>
+            <td><button type="submit" class="btn btn-success">Buy</button></td>
+          </tr>         
+        </tbody>
+      </table>
+    </table>
+  </form>
   </div>
 </div>
 
-<div class="row">
+
+
+
+
+<div class="row" *ngIf="auth.isAuthenticated()">
   <div class="col-xs-12">
     <table>
       <table class="table">
