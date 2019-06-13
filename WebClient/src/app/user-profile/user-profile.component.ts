@@ -36,7 +36,6 @@ export class UserProfileComponent implements OnInit {
     let registerLastname = '';
     let registerDate = '';
     let registerAddress = '';
-    let registerType = '';
     let registerDocumentUrl = '';
 
     this.profileForm = new FormGroup({
@@ -51,6 +50,14 @@ export class UserProfileComponent implements OnInit {
   }
 
   saveChanges(user: ApplicationUser) {
+    //bez parametra ^user^ u pozivu metode treba line 53, i bez prosledjene vrednosti u htmlu line 3 i bez ngmodel atribut dela u inputima u html
+    // this.user propertiji trebaju velikim slovom da pocinju verovatno zbog transfera posle sa pozivom ili to treba samo kad se getuje nisam siguran
+    // this.user.mail = this.profileForm.value.email;
+    // this.user.username = this.profileForm.value.username;
+    // this.user.name = this.profileForm.value.name;
+    // this.user.dateOfBirth = this.profileForm.value.dateOfBirth;
+    // this.user.address = this.profileForm.value.address;
+    // this.user.documentUrl = this.profileForm.value.documentUrl;
     this.registerService.updateUserProfile(user).subscribe(
       (response) => {
         this.router.navigate(['/profile']);
