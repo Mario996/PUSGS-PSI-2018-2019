@@ -1,16 +1,19 @@
 import { FinalPrice } from './final-price.model';
 import { Ticket } from './ticket.model';
+import { PriceList } from './price-list.model';
 
 export class TicketType{
-    public id: number;
-    public decimal:number;
-    public finalPrices: FinalPrice[];
-    public tickets: Ticket[];
+    public Id: number;
+    public Price: number;
+    public Name: string;
+    public PriceLists: PriceList[];
+    public Tickets: Ticket[];
 
-    constructor( id: number, decimal: number, finalPrices: FinalPrice[], tickets: Ticket[]){
-        this.id = id;
-        this.decimal = decimal;
-        this.finalPrices = finalPrices;
-        this.tickets = tickets;
+    constructor( id: number, price: number, name: string, priceLists: PriceList[], tickets: Ticket[]){
+        this.Id = id;
+        this.Price = price;
+        this.Name = name;
+        this.PriceLists = priceLists;
+        this.Tickets = tickets;
     }
 }

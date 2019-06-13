@@ -12,6 +12,9 @@ import { DeleteStationComponent } from './delete-station/delete-station.componen
 import { AddTimetableComponent } from './add-timetable/add-timetable.component';
 import { EditTimetableComponent } from './edit-timetable/edit-timetable.component';
 import { DeleteTimetableComponent } from './delete-timetable/delete-timetable.component';
+import { AddPriceListComponent } from './add-price-list/add-price-list.component';
+import { EditPriceListComponent } from './edit-price-list/edit-price-list.component';
+import { DeletePriceListComponent } from './delete-price-list/delete-price-list.component';
 
 const adminRoutes: Routes = [
     { path: '', component: AdminComponent, children: [
@@ -24,7 +27,10 @@ const adminRoutes: Routes = [
         { path: 'deleteStation', component: DeleteStationComponent},
         { path: 'addTimetable', component: AddTimetableComponent},
         { path: 'editTimetable', component: EditTimetableComponent},
-        { path: 'deleteTimetable', component: DeleteTimetableComponent},] },
+        { path: 'deleteTimetable', component: DeleteTimetableComponent},
+        { path: 'addPriceList', component: AddPriceListComponent},
+        { path: 'editPriceList', component: EditPriceListComponent},
+        { path: 'deletePriceList', component: DeletePriceListComponent}] },
 ];
 
 @NgModule({

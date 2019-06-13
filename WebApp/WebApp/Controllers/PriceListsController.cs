@@ -20,14 +20,14 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        // GET api/priceLists
+        // GET api/pricelists
         public IEnumerable<PriceList> GetAllPriceLists()
         {
-            return unitOfWork.PriceLists.GetAll().Where(x => x.Deleted == false);
+            return unitOfWork.PriceLists.Include("TicketTypes").Where(x => x.Deleted == false);
         }
 
         [HttpGet]
-        // GET api/priceLists/5
+        // GET api/pricelists/5
         public HttpResponseMessage GetPriceListById(int id)
         {
             var result = unitOfWork.PriceLists.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
@@ -43,23 +43,14 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        // POST api/priceLists
+        // POST api/pricelists
         public HttpResponseMessage CreatePriceList([FromBody]PriceListDTO priceListDTO)
         {
             PriceList newPriceList = new PriceList();
 
             newPriceList.StartDate = priceListDTO.StartDate;
             newPriceList.EndDate = priceListDTO.EndDate;
-            foreach (var x in unitOfWork.TicketTypes.GetAll())
-            {
-                foreach (var y in priceListDTO.TicketTypes)
-                {
-                    if (x.Id == y.Id)
-                    {
-                        newPriceList.TicketTypes.Add(x);
-                    }
-                }
-            }
+            newPriceList.TicketTypes = priceListDTO.TicketTypes;
             newPriceList.Tickets = priceListDTO.Tickets;
 
 
@@ -75,23 +66,15 @@ namespace WebApp.Controllers
         }
 
         [HttpPut]
-        // PUT api/priceLists/5
+        // PUT api/pricelists/5
         public HttpResponseMessage UpdatePriceList(int id, [FromBody]PriceListDTO priceListDTO)
         {
             var priceListToBeUpdated = unitOfWork.PriceLists.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
-            List<TicketType> listOfTicketTypes = new List<TicketType>();
-            foreach (var x in unitOfWork.TicketTypes.GetAll())
-            {
-                foreach (var y in priceListDTO.TicketTypes)
-                {
-                    if (x.Id == y.Id)
-                    {
-                        listOfTicketTypes.Add(x);
-                    }
-                }
-            }
-            priceListToBeUpdated.TicketTypes.Clear();
-            priceListToBeUpdated.TicketTypes = listOfTicketTypes;
+
+            priceListToBeUpdated.TicketTypes[0].Price = priceListDTO.TicketTypes[0].Price;
+            priceListToBeUpdated.TicketTypes[1].Price = priceListDTO.TicketTypes[1].Price;
+            priceListToBeUpdated.TicketTypes[2].Price = priceListDTO.TicketTypes[2].Price;
+            priceListToBeUpdated.TicketTypes[3].Price = priceListDTO.TicketTypes[3].Price;
             priceListToBeUpdated.StartDate = priceListDTO.StartDate;
             priceListToBeUpdated.EndDate = priceListDTO.EndDate;
 
@@ -109,7 +92,7 @@ namespace WebApp.Controllers
         }
 
         [HttpDelete]
-        // DELETE api/priceLists/5
+        // DELETE api/pricelists/5
         public HttpResponseMessage DeletePriceList(int id)
         {
             var priceListToBeDeleted = unitOfWork.PriceLists.GetAll().Where(x => x.Id == id && x.Deleted == false).SingleOrDefault();
@@ -117,6 +100,10 @@ namespace WebApp.Controllers
             if (priceListToBeDeleted != null)
             {
                 priceListToBeDeleted.Deleted = true;
+                priceListToBeDeleted.TicketTypes[0].Deleted = true;
+                priceListToBeDeleted.TicketTypes[1].Deleted = true;
+                priceListToBeDeleted.TicketTypes[2].Deleted = true;
+                priceListToBeDeleted.TicketTypes[3].Deleted = true;
                 unitOfWork.Complete();
 
                 return Request.CreateResponse(HttpStatusCode.OK, id);
