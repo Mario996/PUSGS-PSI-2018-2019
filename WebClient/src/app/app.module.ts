@@ -10,7 +10,7 @@ import { VehicleLocationComponent } from './vehicle-location/vehicle-location.co
 import { PriceListComponent } from './price-list/price-list.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ControlComponent } from './control/control.component';
 import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
@@ -45,6 +45,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     SharedModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot() // ToastrModule added
